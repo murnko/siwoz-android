@@ -4,5 +4,13 @@
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="section_patients">Patient</string>
     <string name="section_drugs">Drugs</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_username">Username</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="appTitle">Dr Siwoz</string>
 
 </resources>
