@@ -195,6 +195,7 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 intent.putExtra("token", mToken);
                 startActivity(intent);
+                finish();
             } else {
                 if (mConnectionError) {
                     Context context = getApplicationContext();
