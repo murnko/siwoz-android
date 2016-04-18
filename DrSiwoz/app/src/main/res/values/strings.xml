@@ -14,5 +14,6 @@
     <string name="action_sign_in">Sign in</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="appTitle">Dr Siwoz</string>
+    <string name="action_logout">Log out</string>
 
 </resources>
