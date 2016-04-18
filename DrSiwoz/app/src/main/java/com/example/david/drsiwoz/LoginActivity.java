@@ -169,6 +169,8 @@ public class LoginActivity extends AppCompatActivity {
 
         private final String mUsername;
         private final String mPassword;
+        private String mErrorMessage;
+        private Boolean mConnectionError = false;
 
         UserLoginTask(String username, String password) {
             mUsername = username;
