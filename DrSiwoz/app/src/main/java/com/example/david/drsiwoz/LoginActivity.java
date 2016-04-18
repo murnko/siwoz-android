@@ -4,7 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.net.Uri;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,18 +21,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
+import com.example.david.drsiwoz.Models.AuthData;
+import com.example.david.drsiwoz.REST.ApiProvider;
+import com.example.david.drsiwoz.REST.Token;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.SocketTimeoutException;
-import java.net.URL;
+
+import retrofit2.Call;
 
 /**
  * A login screen that offers login via email/password.
@@ -169,6 +165,7 @@ public class LoginActivity extends AppCompatActivity {
 
         private final String mUsername;
         private final String mPassword;
+        private String mToken;
         private String mErrorMessage;
         private Boolean mConnectionError = false;
 
@@ -195,22 +192,25 @@ public class LoginActivity extends AppCompatActivity {
             showProgress(false);
 
             if (success) {
-                Log.w("DrSiwoz", "success");
-                finish();
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.putExtra("token", mToken);
+                startActivity(intent);
             } else {
-                Log.w("DrSiwoz", "failure");
+                if (mConnectionError) {
+                    Context context = getApplicationContext();
+                    CharSequence text = mErrorMessage;
+                    int duration = Toast.LENGTH_SHORT;
 
-
-
-                Context context = getApplicationContext();
-                CharSequence text = "Hello toast!";
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.setGravity(Gravity.TOP, 0, 0);
-                toast.show();
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.setGravity(Gravity.TOP, 0, 0);
+                    toast.show();
+                    mConnectionError = false;
+                    mErrorMessage = "";
+                }
+                else {
+                    mPasswordView.setError(getString(R.string.error_incorrect_password));
+                    mPasswordView.requestFocus();
+                }
             }
         }
 
@@ -221,39 +221,25 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         private boolean authorize(String urlString, String username, String password) {
-            URL url;
-            StringBuffer chaine = new StringBuffer("");
             try {
-                url = new URL(urlString);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-                return false;
-            }
-            try {
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setRequestProperty("User-Agent", "");
-                connection.setRequestMethod("POST");
-                connection.setDoInput(true);
-                connection.setConnectTimeout(1000);
-                connection.connect();
-
-                InputStream inputStream = connection.getInputStream();
-
-                BufferedReader rd = new BufferedReader(new InputStreamReader(inputStream));
-                String line = "";
-                while ((line = rd.readLine()) != null) {
-                    chaine.append(line);
-                    Log.w("DrSiwoz", line);
+                AuthData authData = new AuthData(username, password);
+                Call<Token> call = ApiProvider.getApi().getToken(authData);
+                Token result = call.execute().body();
+                if (result.getToken() == null) {
+                    return false;
+                } else {
+                    mToken = result.getToken();
                 }
+                return true;
             } catch (SocketTimeoutException e) {
+                mErrorMessage = "Error connecting to server.";
+                mConnectionError = true;
                 return false;
             }
             catch (IOException e) {
                 e.printStackTrace();
                 return false;
             }
-
-            return true;
         }
     }
 }
