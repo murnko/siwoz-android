@@ -40,7 +40,6 @@ public class PatientsFragment extends Fragment implements PatientsView {
         presenter = new PatientsPresenter(this);
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

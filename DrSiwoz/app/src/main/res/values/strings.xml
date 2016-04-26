@@ -16,4 +16,10 @@
     <string name="appTitle">Dr Siwoz</string>
     <string name="action_logout">Log out</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="patientButtonText">Patient</string>
+    <string name="drugsButtonText">Drugs</string>
+    <string name="specialistReportsButtonText">Reports</string>
+
 </resources>

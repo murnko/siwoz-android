@@ -2,6 +2,7 @@ package com.example.david.drsiwoz;
 
 
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -11,18 +12,20 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.david.drsiwoz.Patients.PatientsFragment;
 import com.example.david.drsiwoz.Drugs.DrugsFragment;
-
+import com.example.david.drsiwoz.TileMenu.TileMenuFragment;
 
 
 /**
  * Created by david on 2016-03-19.
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+    implements TileMenuFragment.OnMenuItemSelectedListener {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
@@ -41,14 +44,20 @@ public class MainActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
+//        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+//        tabLayout.setupWithViewPager(mViewPager);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             token= extras.getString("token");
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        mViewPager.setCurrentItem(0);
+    }
+
 
 
     @Override
@@ -72,28 +81,37 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onMenuItemSelected(int position) {
+        mViewPager.setCurrentItem(position);
+    }
+
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
         private DrugsFragment drugsFragment;
         private PatientsFragment patientsFragment;
+        private TileMenuFragment tileMenuFragment;
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
             drugsFragment = new DrugsFragment();
             patientsFragment = new PatientsFragment();
+            tileMenuFragment = new TileMenuFragment();
         }
 
         @Override
         public Fragment getItem(int position) {
-            if(position == 0) {
+            if (position == 0) {
+                return tileMenuFragment;
+            } else if (position == 1) {
                 return patientsFragment;
-            }
-            else{
+            } else{
                 return drugsFragment;
             }
         }
 
         @Override
-        public int getCount() { return 2;
+        public int getCount() {
+            return 3;
         }
 
         @Override
