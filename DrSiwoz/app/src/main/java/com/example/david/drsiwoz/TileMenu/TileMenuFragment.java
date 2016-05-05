@@ -1,6 +1,8 @@
 package com.example.david.drsiwoz.TileMenu;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,6 +17,7 @@ public class TileMenuFragment extends Fragment implements TileMenuView{
     private Button patientButton;
     private Button drugsButton;
     private Button specialistReportsButton;
+    private Button qrCodeScanButton;
 
     private TileMenuPresenter presenter;
 
@@ -48,6 +51,7 @@ public class TileMenuFragment extends Fragment implements TileMenuView{
         patientButton = (Button) rootView.findViewById(R.id.patientButton);
         drugsButton = (Button) rootView.findViewById(R.id.drugsButton);
         specialistReportsButton = (Button) rootView.findViewById(R.id.specialistReportsButton);
+        qrCodeScanButton = (Button) rootView.findViewById(R.id.scanButton);
 
         patientButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +64,22 @@ public class TileMenuFragment extends Fragment implements TileMenuView{
             @Override
             public void onClick(View v) {
                 mCallback.onMenuItemSelected(2);
+            }
+        });
+
+        qrCodeScanButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                try {
+                    Intent intent = new Intent("com.google.zxing.client.android.SCAN");
+                    intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
+
+                    startActivityForResult(intent, 0);
+                } catch (Exception e){
+                    Uri marketUri = Uri.parse("market://details?id=com.google.zxing.client.android");
+                    Intent marketIntent = new Intent(Intent.ACTION_VIEW,marketUri);
+                    startActivity(marketIntent);
+                }
             }
         });
 
@@ -80,4 +100,5 @@ public class TileMenuFragment extends Fragment implements TileMenuView{
 
         return rootView;
     }
+
 }
