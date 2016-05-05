@@ -7,14 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.example.david.drsiwoz.R;
 
 
 public class TileMenuFragment extends Fragment implements TileMenuView{
-    private Button patientButton;
-    private Button drugsButton;
-    private Button specialistReportsButton;
+    private ImageButton patientButton;
+    private ImageButton drugsButton;
+    private ImageButton specialistReportsButton;
 
     private TileMenuPresenter presenter;
 
@@ -45,9 +46,9 @@ public class TileMenuFragment extends Fragment implements TileMenuView{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_tile_menu, container, false);
-        patientButton = (Button) rootView.findViewById(R.id.patientButton);
-        drugsButton = (Button) rootView.findViewById(R.id.drugsButton);
-        specialistReportsButton = (Button) rootView.findViewById(R.id.specialistReportsButton);
+        patientButton = (ImageButton) rootView.findViewById(R.id.patientButton);
+        drugsButton = (ImageButton) rootView.findViewById(R.id.drugsButton);
+        specialistReportsButton = (ImageButton) rootView.findViewById(R.id.specialistReportsButton);
 
         patientButton.setOnClickListener(new View.OnClickListener() {
             @Override

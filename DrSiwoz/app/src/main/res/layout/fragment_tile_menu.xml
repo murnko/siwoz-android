@@ -20,15 +20,21 @@
                 android:layout_height="match_parent"
                 android:gravity="center_horizontal">
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <ImageButton
+                    android:layout_width="128dip"
+                    android:layout_height="128dip"
+                    android:scaleType="fitCenter"
+                    android:background="#00000000"
+                    android:src="@drawable/patient"
                     android:text="@string/patientButtonText"
                     android:id="@+id/patientButton" />
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <ImageButton
+                    android:layout_width="128dip"
+                    android:layout_height="128dip"
+                    android:scaleType="fitCenter"
+                    android:background="#00000000"
+                    android:src="@drawable/drugs"
                     android:text="@string/drugsButtonText"
                     android:id="@+id/drugsButton" />
             </TableRow>
@@ -38,17 +44,23 @@
                 android:layout_height="match_parent"
                 android:gravity="center_horizontal">
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <ImageButton
+                    android:layout_width="128dip"
+                    android:layout_height="128dip"
+                    android:scaleType="fitCenter"
+                    android:background="#00000000"
+                    android:src="@drawable/reports"
                     android:text="@string/specialistReportsButtonText"
                     android:id="@+id/specialistReportsButton" />
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="New Button"
-                    android:id="@+id/button5" />
+                <ImageButton
+                    android:layout_width="128dip"
+                    android:layout_height="128dip"
+                    android:scaleType="fitCenter"
+                    android:background="#00000000"
+                    android:src="@drawable/exams"
+                    android:text="Exams"
+                    android:id="@+id/examsButton" />
             </TableRow>
 
             <TableRow
@@ -56,12 +68,24 @@
                 android:layout_height="match_parent"
                 android:gravity="center_horizontal">
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <ImageButton
+                    android:layout_width="128dip"
+                    android:layout_height="128dip"
+                    android:scaleType="fitCenter"
+                    android:background="#00000000"
                     android:text="New Button"
-                    android:id="@+id/button4" />
+                    android:id="@+id/scanButton"
+                    android:src="@drawable/scan" />
+
+
             </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </TableRow>
+
         </TableLayout>
 
 
