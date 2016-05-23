@@ -21,5 +21,6 @@
     <string name="patientButtonText">Patient</string>
     <string name="drugsButtonText">Drugs</string>
     <string name="specialistReportsButtonText">Reports</string>
+    <string name="google_app_id">DrSiwoz</string>
 
 </resources>

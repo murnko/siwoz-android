@@ -20,7 +20,7 @@ public class PatientsPresenter {
     }
 
     public Patient onUpdateButtonClick() throws Exception {
-        Call<Patient> call = ApiProvider.getApi().getPatient();
+        Call<Patient> call = ApiProvider.getApi().getPatient("1");
         Patient patient = call.execute().body();
         view.updatePatient(patient);
         return patient;

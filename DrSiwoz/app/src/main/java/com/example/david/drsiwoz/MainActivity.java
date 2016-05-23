@@ -1,8 +1,7 @@
 package com.example.david.drsiwoz;
 
-
-
 import android.app.FragmentTransaction;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -15,6 +14,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.david.drsiwoz.Patients.PatientsFragment;
 import com.example.david.drsiwoz.Drugs.DrugsFragment;
@@ -26,6 +27,7 @@ import com.example.david.drsiwoz.TileMenu.TileMenuFragment;
  */
 public class MainActivity extends AppCompatActivity
     implements TileMenuFragment.OnMenuItemSelectedListener {
+
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
@@ -57,8 +59,6 @@ public class MainActivity extends AppCompatActivity
     public void onBackPressed() {
         mViewPager.setCurrentItem(0);
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -125,5 +125,6 @@ public class MainActivity extends AppCompatActivity
             return null;
         }
     }
+
 }
 

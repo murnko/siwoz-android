@@ -2,11 +2,13 @@ package com.example.david.drsiwoz.REST;
 
 import java.util.List;
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 
 import com.example.david.drsiwoz.Models.AuthData;
@@ -18,9 +20,8 @@ import com.example.david.drsiwoz.Models.Patient;
  */
 public interface Api {
 
-
-    @GET("patient")
-    Call<Patient> getPatient();
+    @GET("/patients/{patient_id}")
+    Call<Patient> getPatient(@Path("patient_id") String patientId);
 
     @POST("patient")
     Call<RequestResult> setPatient(int id, String name, int dose, String unit);
