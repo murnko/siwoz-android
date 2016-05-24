@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.example.david.drsiwoz.R;
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -18,10 +19,10 @@ import com.google.zxing.integration.android.IntentResult;
 
 public class TileMenuFragment extends Fragment implements TileMenuView{
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
-    private Button patientButton;
-    private Button drugsButton;
-    private Button specialistReportsButton;
-    private Button scanButton;
+    private ImageButton patientButton;
+    private ImageButton drugsButton;
+    private ImageButton specialistReportsButton;
+    private ImageButton scanButton;
 
     private TileMenuPresenter presenter;
 
@@ -64,9 +65,9 @@ public class TileMenuFragment extends Fragment implements TileMenuView{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_tile_menu, container, false);
-        patientButton = (Button) rootView.findViewById(R.id.patientButton);
-        drugsButton = (Button) rootView.findViewById(R.id.drugsButton);
-        specialistReportsButton = (Button) rootView.findViewById(R.id.specialistReportsButton);
+        patientButton = (ImageButton) rootView.findViewById(R.id.patientButton);
+        drugsButton = (ImageButton) rootView.findViewById(R.id.drugsButton);
+        specialistReportsButton = (ImageButton) rootView.findViewById(R.id.specialistReportsButton);
 
         Button scanButton = (Button) rootView.findViewById(R.id.scanButton);
         scanButton.setOnClickListener(new View.OnClickListener() {
