@@ -20,13 +20,15 @@ import android.widget.Button;
 import com.example.david.drsiwoz.Patients.PatientsFragment;
 import com.example.david.drsiwoz.Drugs.DrugsFragment;
 import com.example.david.drsiwoz.TileMenu.TileMenuFragment;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 
 /**
  * Created by david on 2016-03-19.
  */
 public class MainActivity extends AppCompatActivity
-    implements TileMenuFragment.OnMenuItemSelectedListener {
+    implements TileMenuFragment.OnMenuItemSelectedListener, TileMenuFragment.onScanInitiatedListener {
 
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
@@ -45,9 +47,6 @@ public class MainActivity extends AppCompatActivity
 
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-
-//        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-//        tabLayout.setupWithViewPager(mViewPager);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -79,6 +78,12 @@ public class MainActivity extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onScanInitiated() {
+        IntentIntegrator scanIntegrator = new IntentIntegrator(this);
+        scanIntegrator.initiateScan();
     }
 
     @Override
@@ -124,6 +129,15 @@ public class MainActivity extends AppCompatActivity
             }
             return null;
         }
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+        if (scanningResult != null) {
+            String scanContent = scanningResult.getContents();
+            this.token = scanContent;
+        }
+        this.mSectionsPagerAdapter.patientsFragment.getPatient(this.token);
     }
 
 }

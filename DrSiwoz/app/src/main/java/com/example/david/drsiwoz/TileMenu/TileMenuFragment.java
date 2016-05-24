@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.david.drsiwoz.R;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 
 public class TileMenuFragment extends Fragment implements TileMenuView{
@@ -27,10 +29,15 @@ public class TileMenuFragment extends Fragment implements TileMenuView{
         presenter = new TileMenuPresenter(this);
     }
 
-    OnMenuItemSelectedListener mCallback;
+    OnMenuItemSelectedListener mMenuItemSelectedCallback;
+    onScanInitiatedListener mScanInitiatedCallback;
 
     public interface OnMenuItemSelectedListener {
         public void onMenuItemSelected(int position);
+    }
+
+    public interface onScanInitiatedListener {
+        public void onScanInitiated();
     }
 
     @Override
@@ -38,7 +45,14 @@ public class TileMenuFragment extends Fragment implements TileMenuView{
         super.onAttach(activity);
 
         try {
-            mCallback = (OnMenuItemSelectedListener) activity;
+            mMenuItemSelectedCallback = (OnMenuItemSelectedListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnMenuItemSelectedListener");
+        }
+
+        try {
+            mScanInitiatedCallback = (onScanInitiatedListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnMenuItemSelectedListener");
@@ -53,11 +67,12 @@ public class TileMenuFragment extends Fragment implements TileMenuView{
         patientButton = (Button) rootView.findViewById(R.id.patientButton);
         drugsButton = (Button) rootView.findViewById(R.id.drugsButton);
         specialistReportsButton = (Button) rootView.findViewById(R.id.specialistReportsButton);
+
         Button scanButton = (Button) rootView.findViewById(R.id.scanButton);
         scanButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                scanBar(v);
+                mScanInitiatedCallback.onScanInitiated();
             }
         });
 
@@ -65,53 +80,18 @@ public class TileMenuFragment extends Fragment implements TileMenuView{
         patientButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCallback.onMenuItemSelected(1);
+                mMenuItemSelectedCallback.onMenuItemSelected(1);
             }
         });
 
         drugsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCallback.onMenuItemSelected(2);
+                mMenuItemSelectedCallback.onMenuItemSelected(2);
             }
         });
 
-//        btGetList.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                try {
-//                    List<Drug> patrols = presenter.onUpdateButtonClick();
-//                    String[] pointsView = patrols.toArray(new String[patrols.size()]);
-//                    ArrayAdapter adapterPatrol = new ArrayAdapter<String>(getActivity(), R.layout.drugs_fragment, pointsView);
-//                    listView = (ListView) rootView.findViewById(R.id.listViewDrugs);
-//                    listView.setAdapter(adapterPatrol);
-//                } catch (Exception e) {
-//                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
-
         return rootView;
     }
-    //product barcode mode
-    public void scanBar(View v) {
-        try {
-            //start the scanning activity from the com.google.zxing.client.android.SCAN intent
-            Intent intent = new Intent(ACTION_SCAN);
-            intent.putExtra("SCAN_MODE", "PRODUCT_MODE");
-            startActivityForResult(intent, 0);
-        } catch (ActivityNotFoundException anfe) {
-            //on catch, show the download dialog
-            Log.e("Activity ZXING", "Activity not found");
-        }
-    }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        if (requestCode == 0) {
-            if (resultCode == 200) {
-                String id = intent.getStringExtra("SCAN_RESULT");
-                Log.d("ID", "ID: " + id);
-            }
-        }
-    }
 }

@@ -58,7 +58,11 @@ public class PatientsFragment extends Fragment implements PatientsView {
         nameTextView = (TextView) rootView.findViewById(R.id.nameTextView);
         surnameTextView = (TextView) rootView.findViewById(R.id.surnameTextView);
 
-        String patientId = "1";
+
+        return rootView;
+    }
+
+    public void getPatient(String patientId) {
         Call<Patient> call = ApiProvider.getApi().getPatient(patientId);
         call.enqueue(new Callback<Patient>() {
             @Override
@@ -79,8 +83,6 @@ public class PatientsFragment extends Fragment implements PatientsView {
                 Log.d("bb", "onFailure: dupa");
             }
         });
-
-        return rootView;
     }
 
     @Override
