@@ -69,7 +69,7 @@ public class TileMenuFragment extends Fragment implements TileMenuView{
         drugsButton = (ImageButton) rootView.findViewById(R.id.drugsButton);
         specialistReportsButton = (ImageButton) rootView.findViewById(R.id.specialistReportsButton);
 
-        Button scanButton = (Button) rootView.findViewById(R.id.scanButton);
+        ImageButton scanButton = (ImageButton) rootView.findViewById(R.id.scanButton);
         scanButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
