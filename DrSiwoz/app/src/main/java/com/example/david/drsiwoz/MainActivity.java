@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity
             } else if (position == 1) {
                 return patientsFragment;
             } else{
+                drugsFragment.getDrugs();
                 return drugsFragment;
             }
         }

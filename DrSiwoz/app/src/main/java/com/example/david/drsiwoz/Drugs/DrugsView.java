@@ -1,15 +1,13 @@
 package com.example.david.drsiwoz.Drugs;
 
 import com.example.david.drsiwoz.Models.Drug;
-import com.example.david.drsiwoz.REST.RequestResult;
 
 import java.util.List;
 
 /**
- * Created by david on 2016-03-19.
+ * Created by jacek on 25.05.16.
  */
 public interface DrugsView {
-    void updateDrugsList(List<Drug> drugs);
-    void addDrugsResult(RequestResult result);
-    void deleteDrugsResult(RequestResult result);
+    void showDrugsList(List<Drug> drugs);
+    void displayGetDrugsError();
 }
