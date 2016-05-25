@@ -20,12 +20,12 @@ import com.example.david.drsiwoz.Models.Patient;
  */
 public interface Api {
 
-    @GET("/patients/{patient_id}")
+    @GET("patients/{patient_id}")
     Call<Patient> getPatient(@Path("patient_id") String patientId);
 
     @POST("patient")
     Call<RequestResult> setPatient(int id, String name, int dose, String unit);
-
+git a
     @DELETE("patient")
     Call<RequestResult> deletePatient(int id);
 
@@ -39,6 +39,6 @@ public interface Api {
     Call<RequestResult> deleteDrugs(int id);
 
     @Headers("Content-Type: application/json")
-    @POST("/auth/login")
+    @POST("auth/login")
     Call<Token> getToken(@Body AuthData authData);
 }
