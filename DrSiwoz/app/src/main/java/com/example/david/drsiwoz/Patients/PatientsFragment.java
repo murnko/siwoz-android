@@ -29,10 +29,6 @@ public class PatientsFragment extends Fragment implements PatientsView {
 
     private TextView nameTextView;
     private TextView surnameTextView;
-    private TextView infoView;
-    private ListView listView;
-    private Button btGetList;
-
 
     private PatientsPresenter presenter;
 
@@ -44,8 +40,6 @@ public class PatientsFragment extends Fragment implements PatientsView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.patients_fragment, container, false);
-        listView = (ListView) rootView.findViewById(R.id.lvReport);
-        btGetList = (Button) rootView.findViewById(R.id.btSend);
         nameTextView = (TextView) rootView.findViewById(R.id.nameTextView);
         surnameTextView = (TextView) rootView.findViewById(R.id.surnameTextView);
 
@@ -75,20 +69,4 @@ public class PatientsFragment extends Fragment implements PatientsView {
             }
         });
     }
-
-    @Override
-    public void updatePatient(Patient patient) {
-        Toast.makeText(getActivity(), "update info", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void addPatientsResult(RequestResult result) {
-        Toast.makeText(getActivity(), result.result, Toast.LENGTH_SHORT).show();
-    }
-    @Override
-    public void deletePatientsResult(RequestResult result) {
-        Toast.makeText(getActivity(), result.result, Toast.LENGTH_SHORT).show();
-    }
-
-
 }

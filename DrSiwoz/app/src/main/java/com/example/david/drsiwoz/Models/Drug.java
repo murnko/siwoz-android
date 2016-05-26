@@ -1,21 +1,43 @@
 package com.example.david.drsiwoz.Models;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by david on 2016-03-19.
  */
 public class Drug {
-    int id;
+    @SerializedName("id")
+    String id;
+
+    @SerializedName("name")
     String name;
-    int dose;
+
+    @SerializedName("dosage")
+    int dosage;
+
+    @SerializedName("unit")
     String unit;
 
-
-    String description;
-
-    public Drug( int id, String name, int dose, String unit){
+    public Drug( String id, String name, int dosage, String unit){
         this.id = id;
         this.name = name;
-        this.dose = dose;
+        this.dosage = dosage;
         this.unit = unit;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getDosage() {
+        return dosage;
+    }
+
+    public String getUnit() {
+        return unit;
     }
 }
