@@ -10,19 +10,16 @@ import android.widget.ListView;
 
 import com.example.david.drsiwoz.Models.Drug;
 import com.example.david.drsiwoz.R;
-import com.example.david.drsiwoz.REST.ApiProvider;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * Created by david on 2016-03-19.
  */
 public class DrugsFragment extends Fragment implements DrugsView {
     private ListView listView;
+    private DrugsListViewAdapter adapter;
 
     private DrugsPresenter presenter;
 
@@ -40,11 +37,18 @@ public class DrugsFragment extends Fragment implements DrugsView {
         final View rootView = inflater.inflate(R.layout.drugs_fragment, container, false);
         listView = (ListView) rootView.findViewById(R.id.listViewDrugs);
 
+        List<Drug> mockDrugsList = new ArrayList<>();
+        adapter = new DrugsListViewAdapter(getActivity(), mockDrugsList);
+        listView.setAdapter(adapter);
+
         return rootView;
     }
 
     @Override
     public void showDrugsList(List<Drug> drugs) {
+        adapter.clear();
+        adapter.addAll(drugs);
+        adapter.notifyDataSetChanged();
         Log.d("DrugsFragment", "SHow drugs");
     }
 

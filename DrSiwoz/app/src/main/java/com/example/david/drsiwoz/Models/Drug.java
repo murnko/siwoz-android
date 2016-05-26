@@ -24,4 +24,20 @@ public class Drug {
         this.dosage = dosage;
         this.unit = unit;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getDosage() {
+        return dosage;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
 }
