@@ -7,7 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +31,11 @@ public class PatientsFragment extends Fragment implements PatientsView {
 
     private TextView nameTextView;
     private TextView surnameTextView;
+    private TextView descriptionTextView;
+    private TextView descriptionEditText;
+    private Button postButton;
+    private Button sendButton;
+    private RadioGroup stateRGroup;
 
     private PatientsPresenter presenter;
 
@@ -42,12 +49,47 @@ public class PatientsFragment extends Fragment implements PatientsView {
         final View rootView = inflater.inflate(R.layout.patients_fragment, container, false);
         nameTextView = (TextView) rootView.findViewById(R.id.nameTextView);
         surnameTextView = (TextView) rootView.findViewById(R.id.surnameTextView);
+        descriptionTextView = (TextView) rootView.findViewById(R.id.tvDescr);
+        descriptionEditText = (EditText) rootView.findViewById(R.id.txtPatDescr);
+        stateRGroup = (RadioGroup) rootView.findViewById(R.id.radioPatientGroup);
+        sendButton = (Button) rootView.findViewById(R.id.btSend);
+        postButton = (Button) rootView.findViewById(R.id.btPost);
+
+
+
+        sendButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                getPatient("0");
+            }
+
+        });
+
+        stateRGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                View radioButton = stateRGroup.findViewById(checkedId);
+                int index = stateRGroup.indexOfChild(radioButton);
+
+                if (index > 0) {
+
+                    postButton.setVisibility(View.VISIBLE);
+                    sendButton.setVisibility(View.INVISIBLE);
+                    descriptionTextView.setVisibility(View.GONE);
+                    descriptionEditText.setVisibility(View.VISIBLE);
+                }
+
+            }
+        });
 
 
         return rootView;
     }
 
-    public void getPatient(String patientId) {
+
+    public void getPatient(final String patientId) {
         Call<Patient> call = ApiProvider.getApi().getPatient(patientId);
         call.enqueue(new Callback<Patient>() {
             @Override
@@ -57,8 +99,15 @@ public class PatientsFragment extends Fragment implements PatientsView {
                     Log.d("code", "not 200");
                 } else {
                     Patient patient = response.body();
-                    nameTextView.setText(patient.getName());
-                    surnameTextView.setText(patient.getSurname());
+                    if (nameTextView != null){
+                        nameTextView.setText(patient.getName());
+                        surnameTextView.setText(patient.getSurname());
+                        descriptionTextView.setText(patient.getDescription());
+
+                    }
+                    else {
+                        System.out.println("Imię pacjenta: " + patient.getName());
+                    }
                 }
             }
 
@@ -69,4 +118,6 @@ public class PatientsFragment extends Fragment implements PatientsView {
             }
         });
     }
+
+
 }

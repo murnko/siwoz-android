@@ -138,7 +138,8 @@ public class MainActivity extends AppCompatActivity
             String scanContent = scanningResult.getContents();
             this.token = scanContent;
         }
-        this.mSectionsPagerAdapter.patientsFragment.getPatient(this.token);
+        mViewPager.setCurrentItem(1);
+        mSectionsPagerAdapter.patientsFragment.getPatient(this.token);
     }
 
 }

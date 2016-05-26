@@ -32,5 +32,6 @@ public class Patient {
     public String getSurname() {
         return this.mSurname;
     }
+    public String getDescription() {return this.mDescription;}
 }
 
