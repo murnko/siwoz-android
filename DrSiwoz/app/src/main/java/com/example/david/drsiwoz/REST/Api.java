@@ -25,7 +25,7 @@ public interface Api {
 
     @POST("patient")
     Call<RequestResult> setPatient(int id, String name, int dose, String unit);
-git a
+
     @DELETE("patient")
     Call<RequestResult> deletePatient(int id);
 
