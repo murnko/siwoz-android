@@ -27,8 +27,8 @@ public class DrugsFragment extends Fragment implements DrugsView {
         presenter = new DrugsPresenterImpl(this);
     }
 
-    public void getDrugs() {
-        presenter.getDrugs();
+    public void getDrugs(String authToken) {
+        presenter.getDrugs(authToken);
     }
 
     @Override

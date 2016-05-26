@@ -3,7 +3,7 @@ package com.example.david.drsiwoz.Drugs;
 import android.util.Log;
 
 import com.example.david.drsiwoz.Models.Drug;
-import com.example.david.drsiwoz.REST.ApiProvider;
+import com.example.david.drsiwoz.REST.ApiAuthProvider;
 
 import java.util.List;
 
@@ -16,9 +16,9 @@ import retrofit2.Response;
  */
 public class DrugsInteractorImpl implements DrugsInteractor {
     @Override
-    public void getDrugs(final OnGetDrugsListener listener) {
+    public void getDrugs(final OnGetDrugsListener listener, String authToken) {
         Log.d("get Drugs", "started");
-        Call<List<Drug>> call = ApiProvider.getApi().getDrugs();
+        Call<List<Drug>> call = ApiAuthProvider.getApi(authToken).getDrugs();
         call.enqueue(new Callback<List<Drug>>() {
             @Override
             public void onResponse(Call<List<Drug>> call, Response<List<Drug>> response) {

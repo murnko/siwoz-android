@@ -33,7 +33,8 @@ public class MainActivity extends AppCompatActivity
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
-    private String token;
+    private String authToken;
+    private String patientId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            token= extras.getString("token");
+            authToken = extras.getString("authToken");
         }
     }
 
@@ -71,7 +72,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         } else if (id == R.id.action_logout) {
-            token = null;
+            authToken = null;
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
@@ -110,7 +111,7 @@ public class MainActivity extends AppCompatActivity
             } else if (position == 1) {
                 return patientsFragment;
             } else{
-                drugsFragment.getDrugs();
+                drugsFragment.getDrugs(authToken);
                 return drugsFragment;
             }
         }
@@ -136,9 +137,9 @@ public class MainActivity extends AppCompatActivity
         IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
         if (scanningResult != null) {
             String scanContent = scanningResult.getContents();
-            this.token = scanContent;
+            this.patientId = scanContent;
         }
-        this.mSectionsPagerAdapter.patientsFragment.getPatient(this.token);
+        this.mSectionsPagerAdapter.patientsFragment.getPatient(this.patientId);
     }
 
 }

@@ -18,10 +18,10 @@ import com.example.david.drsiwoz.Models.Patient;
  */
 public interface Api {
 
-    @GET("patients/{patient_id}")
+    @GET("api/patients/{patient_id}")
     Call<Patient> getPatient(@Path("patient_id") String patientId);
 
-    @GET("/drugs")
+    @GET("api/drugs")
     Call<List<Drug>> getDrugs();
 
     @Headers("Content-Type: application/json")

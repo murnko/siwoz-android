@@ -190,7 +190,7 @@ public class LoginActivity extends AppCompatActivity {
 
             if (success) {
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                intent.putExtra("token", mToken);
+                intent.putExtra("authToken", mToken);
                 startActivity(intent);
                 finish();
             } else {

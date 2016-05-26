@@ -14,5 +14,5 @@ public interface DrugsInteractor {
         void onSuccess(List<Drug> drugs);
     }
 
-    void getDrugs(OnGetDrugsListener listener);
+    void getDrugs(OnGetDrugsListener listener, String authToken);
 }

@@ -18,8 +18,8 @@ public class DrugsPresenterImpl implements DrugsPresenter, DrugsInteractor.OnGet
     }
 
     @Override
-    public void getDrugs() {
-        drugsInteractor.getDrugs(this);
+    public void getDrugs(String authToken) {
+        drugsInteractor.getDrugs(this, authToken);
     }
 
     @Override

@@ -30,11 +30,9 @@ public class DrugsListViewAdapter extends ArrayAdapter<Drug> {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.drug_list_item, parent, false);
-        TextView drugIdTextView = (TextView) rowView.findViewById(R.id.drugIdTextView);
         TextView drugNameTextView = (TextView) rowView.findViewById(R.id.drugNameTextView);
         TextView drugDosageTextView = (TextView) rowView.findViewById(R.id.drugDosageTextView);
         TextView drugUnitTextView = (TextView) rowView.findViewById(R.id.drugUnitTextView);
-        drugIdTextView.setText(values.get(position).getId());
         drugNameTextView.setText(values.get(position).getName());
         drugDosageTextView.setText(String.valueOf(values.get(position).getDosage()));
         drugUnitTextView.setText(values.get(position).getUnit());
