@@ -1,21 +1,15 @@
 package com.example.david.drsiwoz;
 
-import android.app.FragmentTransaction;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
 import com.example.david.drsiwoz.Patients.PatientsFragment;
 import com.example.david.drsiwoz.Drugs.DrugsFragment;
@@ -28,7 +22,10 @@ import com.google.zxing.integration.android.IntentResult;
  * Created by david on 2016-03-19.
  */
 public class MainActivity extends AppCompatActivity
-    implements TileMenuFragment.OnMenuItemSelectedListener, TileMenuFragment.onScanInitiatedListener {
+    implements
+        TileMenuFragment.OnMenuItemSelectedListener,
+        TileMenuFragment.onScanInitiatedListener,
+        PatientsFragment.OnPatientFetchFailedListener {
 
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
@@ -89,13 +86,21 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onMenuItemSelected(int position) {
+        if (position == 2) {
+            mSectionsPagerAdapter.drugsFragment.getDrugs(authToken);
+        }
         mViewPager.setCurrentItem(position);
     }
 
+    @Override
+    public void onPatientFetchFailedListener() {
+        this.patientId = null;
+    }
+
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
-        private DrugsFragment drugsFragment;
-        private PatientsFragment patientsFragment;
-        private TileMenuFragment tileMenuFragment;
+        public DrugsFragment drugsFragment;
+        public PatientsFragment patientsFragment;
+        public TileMenuFragment tileMenuFragment;
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -139,7 +144,7 @@ public class MainActivity extends AppCompatActivity
             String scanContent = scanningResult.getContents();
             this.patientId = scanContent;
         }
-        this.mSectionsPagerAdapter.patientsFragment.getPatient(this.patientId);
+        this.mSectionsPagerAdapter.patientsFragment.getPatient(this.authToken, this.patientId);
     }
 
 }
