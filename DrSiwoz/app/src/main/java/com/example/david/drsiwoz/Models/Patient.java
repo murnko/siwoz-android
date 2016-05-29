@@ -13,24 +13,34 @@ public class Patient {
     @SerializedName("name")
     String mName;
 
-    @SerializedName("surname")
-    String mSurname;
+    @SerializedName("acceptance_date")
+    String mAcceptanceDate;
 
-    @SerializedName("description")
-    String mDescription;
+    @SerializedName("release_date")
+    String mReleaseDate;
 
-    public Patient(String id, String name, String surname, String description) {
-        this.mName = name;
-        this.mSurname = surname;
+    @SerializedName("pesel")
+    String mPesel;
+
+    public Patient(String id, String name, String acceptance_date, String release_date, String pesel) {
         this.mId = id;
-        this.mDescription = description;
+        this.mName = name;
+        this.mAcceptanceDate = acceptance_date;
+        this.mReleaseDate = release_date;
+        this.mPesel = pesel;
     }
 
     public String getName() {
         return this.mName;
     }
-    public String getSurname() {
-        return this.mSurname;
+    public String getAcceptanceDate() {
+        return this.mAcceptanceDate;
+    }
+    public String getReleaseDate() {
+        return this.mReleaseDate;
+    }
+    public String getPesel() {
+        return this.mPesel;
     }
 }
 
