@@ -12,16 +12,16 @@ public class Drug {
     @SerializedName("name")
     String name;
 
-    @SerializedName("dosage")
-    int dosage;
+    @SerializedName("serving")
+    float dosage;
 
     @SerializedName("unit")
     String unit;
 
-    public Drug( String id, String name, int dosage, String unit){
+    public Drug( String id, String name, float serving, String unit){
         this.id = id;
         this.name = name;
-        this.dosage = dosage;
+        this.dosage = serving;
         this.unit = unit;
     }
 
@@ -33,7 +33,7 @@ public class Drug {
         return name;
     }
 
-    public int getDosage() {
+    public float getDosage() {
         return dosage;
     }
 

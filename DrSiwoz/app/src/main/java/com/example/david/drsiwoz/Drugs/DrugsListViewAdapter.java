@@ -33,9 +33,10 @@ public class DrugsListViewAdapter extends ArrayAdapter<Drug> {
         TextView drugNameTextView = (TextView) rowView.findViewById(R.id.drugNameTextView);
         TextView drugDosageTextView = (TextView) rowView.findViewById(R.id.drugDosageTextView);
         TextView drugUnitTextView = (TextView) rowView.findViewById(R.id.drugUnitTextView);
-        drugNameTextView.setText(values.get(position).getName());
-        drugDosageTextView.setText(String.valueOf(values.get(position).getDosage()));
-        drugUnitTextView.setText(values.get(position).getUnit());
+        Drug drug = values.get(position);
+        drugNameTextView.setText(drug.getName());
+        drugDosageTextView.setText(String.valueOf(drug.getDosage()));
+        drugUnitTextView.setText(drug.getUnit());
 
         return rowView;
     }
