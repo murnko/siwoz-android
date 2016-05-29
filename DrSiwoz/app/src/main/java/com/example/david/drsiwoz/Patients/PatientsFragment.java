@@ -17,7 +17,9 @@ import com.example.david.drsiwoz.Models.Patient;
 public class PatientsFragment extends Fragment implements PatientsView {
 
     private TextView nameTextView;
-    private TextView surnameTextView;
+    private TextView acceptanceDateTextView;
+    private TextView releaseDateTextView;
+    private TextView peselTextView;
     OnPatientFetchFailedListener mOnPatientFetchFailedCallback;
 
     private PatientsPresenter presenter;
@@ -35,7 +37,9 @@ public class PatientsFragment extends Fragment implements PatientsView {
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.patients_fragment, container, false);
         nameTextView = (TextView) rootView.findViewById(R.id.nameTextView);
-        surnameTextView = (TextView) rootView.findViewById(R.id.surnameTextView);
+        acceptanceDateTextView = (TextView) rootView.findViewById(R.id.acceptanceDateTextView);
+        releaseDateTextView = (TextView) rootView.findViewById(R.id.releaseDateTextView);
+        peselTextView = (TextView) rootView.findViewById(R.id.peselTextView);
 
         return rootView;
     }
@@ -60,7 +64,9 @@ public class PatientsFragment extends Fragment implements PatientsView {
     @Override
     public void showPatient(Patient patient) {
         nameTextView.setText(patient.getName());
-        surnameTextView.setText(patient.getSurname());
+        releaseDateTextView.setText(patient.getReleaseDate());
+        acceptanceDateTextView.setText(patient.getAcceptanceDate());
+        peselTextView.setText(patient.getPesel());
     }
 
     public void getPatient(String authToken, String patientId) {
