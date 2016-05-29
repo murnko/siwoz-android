@@ -19,11 +19,14 @@ public class Patient {
     @SerializedName("description")
     String mDescription;
 
+
+
     public Patient(String id, String name, String surname, String description) {
         this.mName = name;
         this.mSurname = surname;
         this.mId = id;
         this.mDescription = description;
+
     }
 
     public String getName() {

@@ -16,12 +16,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-
+import com.example.david.drsiwoz.Models.UpPatient;
 import com.example.david.drsiwoz.R;
 import com.example.david.drsiwoz.Models.Patient;
 import com.example.david.drsiwoz.REST.ApiProvider;
 import com.example.david.drsiwoz.REST.RequestResult;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -41,6 +42,7 @@ public class PatientsFragment extends Fragment implements PatientsView {
     private RadioButton infoButton;
     private RadioButton goodButton;
     private RadioButton careButton;
+    private String patientStatus;
 
     private PatientsPresenter presenter;
 
@@ -75,6 +77,14 @@ public class PatientsFragment extends Fragment implements PatientsView {
             }
 
         });
+        postButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                UpPatient update = new UpPatient(patientStatus, descriptionEditText.getText().toString());
+                updatePatient("0", update);
+            }
+
+        });
 
         stateRGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
@@ -96,6 +106,8 @@ public class PatientsFragment extends Fragment implements PatientsView {
                         infoButton.setBackgroundColor(checkedColor);
                         goodButton.setBackgroundColor(Color.TRANSPARENT);
                         careButton.setBackgroundColor(Color.TRANSPARENT);
+
+                        patientStatus = "info";
                         break;
                     case 1:
                         descriptionTextView.setVisibility(View.VISIBLE);
@@ -104,6 +116,8 @@ public class PatientsFragment extends Fragment implements PatientsView {
                         infoButton.setBackgroundColor(Color.TRANSPARENT);
                         goodButton.setBackgroundColor(checkedColor);
                         careButton.setBackgroundColor(Color.TRANSPARENT);
+
+                        patientStatus = "good";
                         break;
                     case 2:
                         descriptionTextView.setVisibility(View.INVISIBLE);
@@ -112,6 +126,9 @@ public class PatientsFragment extends Fragment implements PatientsView {
                         infoButton.setBackgroundColor(Color.TRANSPARENT);
                         goodButton.setBackgroundColor(Color.TRANSPARENT);
                         careButton.setBackgroundColor(checkedColor);
+
+
+                        patientStatus = "care";
                         break;
 
                 }
@@ -150,6 +167,28 @@ public class PatientsFragment extends Fragment implements PatientsView {
             public void onFailure(Call<Patient> call, Throwable t) {
                 Log.d("bb", t.toString());
                 Log.d("bb", "onFailure: dupa");
+            }
+        });
+    }
+
+    public void updatePatient(final String patientId, UpPatient patientStatus) {
+        Call<ResponseBody> call = ApiProvider.getApi().updatePatient(patientId, patientStatus);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call call, Response response) {
+                int statusCode = response.code();
+                if (statusCode != 200) {
+                    Log.d("code", "not 200");
+                }
+                else{
+                    Log.d("code", "OK200");
+                }
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+                Log.d("bb", t.toString());
+                Log.d("bb", "onFailure: wielbłąd");
             }
         });
     }
