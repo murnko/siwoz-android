@@ -1,5 +1,6 @@
 package com.example.david.drsiwoz.Patients;
 
+import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +38,9 @@ public class PatientsFragment extends Fragment implements PatientsView {
     private Button postButton;
     private Button sendButton;
     private RadioGroup stateRGroup;
+    private RadioButton infoButton;
+    private RadioButton goodButton;
+    private RadioButton careButton;
 
     private PatientsPresenter presenter;
 
@@ -51,10 +56,16 @@ public class PatientsFragment extends Fragment implements PatientsView {
         surnameTextView = (TextView) rootView.findViewById(R.id.surnameTextView);
         descriptionTextView = (TextView) rootView.findViewById(R.id.tvDescr);
         descriptionEditText = (EditText) rootView.findViewById(R.id.txtPatDescr);
+
         stateRGroup = (RadioGroup) rootView.findViewById(R.id.radioPatientGroup);
+        infoButton = (RadioButton) rootView.findViewById(R.id.info_rb);
+        goodButton = (RadioButton) rootView.findViewById(R.id.good_rb);
+        careButton = (RadioButton) rootView.findViewById(R.id.care_rb);
+
         sendButton = (Button) rootView.findViewById(R.id.btSend);
         postButton = (Button) rootView.findViewById(R.id.btPost);
 
+        final Integer checkedColor = getActivity().getResources().getColor(android.R.color.holo_orange_dark);
 
 
         sendButton.setOnClickListener(new View.OnClickListener(){
@@ -72,13 +83,37 @@ public class PatientsFragment extends Fragment implements PatientsView {
 
                 View radioButton = stateRGroup.findViewById(checkedId);
                 int index = stateRGroup.indexOfChild(radioButton);
+                postButton.setVisibility(View.VISIBLE);
+                sendButton.setVisibility(View.INVISIBLE);
 
-                if (index > 0) {
+                switch (index){
 
-                    postButton.setVisibility(View.VISIBLE);
-                    sendButton.setVisibility(View.INVISIBLE);
-                    descriptionTextView.setVisibility(View.GONE);
-                    descriptionEditText.setVisibility(View.VISIBLE);
+                    case 0:
+
+                        descriptionTextView.setVisibility(View.INVISIBLE);
+                        descriptionEditText.setVisibility(View.VISIBLE);
+
+                        infoButton.setBackgroundColor(checkedColor);
+                        goodButton.setBackgroundColor(Color.TRANSPARENT);
+                        careButton.setBackgroundColor(Color.TRANSPARENT);
+                        break;
+                    case 1:
+                        descriptionTextView.setVisibility(View.VISIBLE);
+                        descriptionEditText.setVisibility(View.INVISIBLE);
+
+                        infoButton.setBackgroundColor(Color.TRANSPARENT);
+                        goodButton.setBackgroundColor(checkedColor);
+                        careButton.setBackgroundColor(Color.TRANSPARENT);
+                        break;
+                    case 2:
+                        descriptionTextView.setVisibility(View.INVISIBLE);
+                        descriptionEditText.setVisibility(View.VISIBLE);
+
+                        infoButton.setBackgroundColor(Color.TRANSPARENT);
+                        goodButton.setBackgroundColor(Color.TRANSPARENT);
+                        careButton.setBackgroundColor(checkedColor);
+                        break;
+
                 }
 
             }
