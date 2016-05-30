@@ -145,6 +145,7 @@ public class MainActivity extends AppCompatActivity
             this.patientId = scanContent;
         }
         this.mSectionsPagerAdapter.patientsFragment.getPatient(this.authToken, this.patientId);
+        this.mSectionsPagerAdapter.patientsFragment.getExamination(this.authToken, this.patientId);
     }
 
 }

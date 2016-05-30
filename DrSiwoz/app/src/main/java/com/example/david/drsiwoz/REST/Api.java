@@ -11,6 +11,7 @@ import retrofit2.http.Path;
 
 import com.example.david.drsiwoz.Models.AuthData;
 import com.example.david.drsiwoz.Models.Drug;
+import com.example.david.drsiwoz.Models.Examination;
 import com.example.david.drsiwoz.Models.Patient;
 
 /**
@@ -20,6 +21,9 @@ public interface Api {
 
     @GET("api/patients/{patient_id}")
     Call<Patient> getPatient(@Path("patient_id") String patientId);
+
+    @GET("api/patients/{patientId}/status")
+    Call<Examination> getExamination(@Path("patientId") String patientId);
 
     @GET("api/drugs")
     Call<List<Drug>> getDrugs();
