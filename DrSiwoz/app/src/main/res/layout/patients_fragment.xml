@@ -3,139 +3,235 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Name"
-        android:id="@+id/nameTextView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pesel"
-        android:id="@+id/peselTextView"
-        android:layout_below="@+id/nameTextView"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/btSend"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
-
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_below="@+id/btSend"
-        android:orientation="horizontal"
-        android:layout_alignParentStart="true"
-        android:id="@+id/radioGroup">
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Good"/>
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Tolerable"/>
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_weight="1"
-            android:text="Bad"/>
-
-    </RadioGroup>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Acceptance Date"
-        android:id="@+id/acceptanceDateTextView"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/peselTextView"
-        android:layout_marginStart="52dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Release Date"
-        android:id="@+id/releaseDateTextView"
-        android:layout_below="@+id/acceptanceDateTextView"
-        android:layout_alignStart="@+id/acceptanceDateTextView" />
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/linearLayout">
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right">
-
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="Date"
-                android:id="@+id/textView3"
-                android:paddingBottom="5dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/examinationDateTextView"
-                android:paddingBottom="10dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
+        <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="Doctor"
-                android:id="@+id/textView5"
-                android:paddingBottom="5dp"
-                android:textStyle="bold" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <TextView
-                android:layout_width="100dp"
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Name"
+                    android:id="@+id/textView2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/nameTextView"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Pesel"
+                    android:id="@+id/textView4" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/peselTextView"
+                    android:layout_below="@+id/nameTextView"
+                    android:layout_alignParentStart="true" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Acceptance date"
+                    android:id="@+id/textView6" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/acceptanceDateTextView"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/peselTextView" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Release date"
+                    android:id="@+id/textView7" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/releaseDateTextView"
+                    android:layout_below="@+id/acceptanceDateTextView"
+                    android:layout_alignStart="@+id/acceptanceDateTextView" />
+            </TableRow>
+        </TableLayout>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+
+            android:id="@+id/radioPatientGroup"
+            android:layout_below="@+id/spacing"
+            android:layout_alignParentStart="true"
+            android:paddingTop="10dp">
+
+            <RadioButton
+                android:button="@drawable/ok_icon"
+                android:scaleType="fitXY"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/examinationDoctorTextView" />
-        </LinearLayout>
+                android:layout_weight="1"
+                android:text="Good"
+                android:id="@+id/good_rb"
+                android:layout_alignTop="@+id/patientStatusDescriptionTextView"
+                android:layout_alignStart="@+id/lastExaminationTitleTextView" />
+
+            <RadioButton
+                android:button ="@drawable/justinfo_icon"
+                android:scaleType="fitXY"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Info"
+                android:clickable="true"
+                android:id="@+id/info_rb"
+                android:layout_alignTop="@+id/patientStatusDescriptionTextView"
+                android:layout_alignParentStart="true"
+                android:checked="false" />
+
+            <RadioButton
+                android:button="@drawable/care_icon"
+                android:scaleType="fitXY"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/care_rb"
+                android:text="Care"
+                android:layout_alignBottom="@+id/good_rb"
+                android:layout_alignStart="@+id/btSend" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GET"
+                android:id="@+id/btSend"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true" />
+
+        </RadioGroup>
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/patientStatusDescriptionTextView"
+            android:layout_below="@id/radioPatientGroup"
+            android:layout_alignParentStart="true"
+            android:layout_alignBottom="@+id/radioPatientGroup"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"/>
+
+        <EditText
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:text="No examinations yet."
-            android:id="@+id/examinationDescriptionTextView" />
+            android:layout_height="wrap_content"
+            android:id="@+id/patientStatusDescriptionEditText"
+            android:hint="Wpisz opis stanu pacjenta"
+            android:visibility="invisible"
+            android:layout_below="@+id/radioPatientGroup"
+            android:layout_alignParentStart="false"
+            android:textColorHint="@color/accent_material_dark"
+            android:gravity="top"
+            android:layout_weight="1" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Last examination"
+            android:id="@+id/lastExaminationTitleTextView"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="10dp"
+            android:layout_above="@+id/linearLayout"
+            android:layout_toStartOf="@+id/btSend" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/linearLayout">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Date"
+                    android:id="@+id/textView3"
+                    android:paddingBottom="5dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/examinationDateTextView"
+                    android:paddingBottom="10dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Doctor"
+                    android:id="@+id/textView5"
+                    android:paddingBottom="5dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/examinationDoctorTextView" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="No examinations yet."
+                android:id="@+id/examinationDescriptionTextView" />
+
+        </LinearLayout>
     </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Last examination"
-        android:id="@+id/lastExaminationTitleTextView"
-        android:layout_gravity="center_horizontal"
-        android:paddingBottom="10dp"
-        android:layout_above="@+id/linearLayout"
-        android:layout_toStartOf="@+id/btSend" />
 
 </RelativeLayout>

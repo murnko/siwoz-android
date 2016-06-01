@@ -7,9 +7,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
-
 import com.example.david.drsiwoz.Models.Examination;
+import com.example.david.drsiwoz.Models.UpPatient;
 import com.example.david.drsiwoz.R;
 import com.example.david.drsiwoz.Models.Patient;
 
@@ -25,7 +28,17 @@ public class PatientsFragment extends Fragment implements PatientsView {
     private TextView examinationDescriptionTextView;
     private TextView examinationDoctorTextView;
     private TextView examinationDateTextView;
-    OnPatientFetchFailedListener mOnPatientFetchFailedCallback;
+    PatientListener mPatientCallback;
+
+    private TextView descriptionTextView;
+    private TextView descriptionEditText;
+    private Button sendButton;
+    private RadioGroup stateRGroup;
+    private RadioButton infoButton;
+    private RadioButton goodButton;
+    private RadioButton careButton;
+    private String patientStatus;
+    private String authToken;
 
     private PatientsPresenter presenter;
 
@@ -33,8 +46,9 @@ public class PatientsFragment extends Fragment implements PatientsView {
         presenter = new PatientsPresenter(this);
     }
 
-    public interface OnPatientFetchFailedListener {
+    public interface PatientListener {
         void onPatientFetchFailedListener();
+        String getPatientId();
     }
 
     @Override
@@ -49,6 +63,69 @@ public class PatientsFragment extends Fragment implements PatientsView {
         examinationDoctorTextView = (TextView) rootView.findViewById(R.id.examinationDoctorTextView);
         examinationDescriptionTextView = (TextView) rootView.findViewById(R.id.examinationDescriptionTextView);
 
+        descriptionEditText = (TextView) rootView.findViewById(R.id.patientStatusDescriptionEditText);
+        descriptionTextView = (TextView) rootView.findViewById(R.id.patientStatusDescriptionTextView);
+
+        stateRGroup = (RadioGroup) rootView.findViewById(R.id.radioPatientGroup);
+        infoButton = (RadioButton) rootView.findViewById(R.id.info_rb);
+        goodButton = (RadioButton) rootView.findViewById(R.id.good_rb);
+        careButton = (RadioButton) rootView.findViewById(R.id.care_rb);
+
+        sendButton = (Button) rootView.findViewById(R.id.btSend);
+        final Integer checkedColor = getActivity().getResources().getColor(android.R.color.holo_orange_dark);
+
+        sendButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                UpPatient update = new UpPatient(patientStatus, descriptionEditText.getText().toString());
+                String patientId = mPatientCallback.getPatientId();
+                presenter.updatePatient(authToken, patientId, update);
+            }
+        });
+
+        stateRGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+            View radioButton = stateRGroup.findViewById(checkedId);
+            int index = stateRGroup.indexOfChild(radioButton);
+
+            switch (index){
+                case 0:
+                    descriptionTextView.setVisibility(View.VISIBLE);
+                    descriptionEditText.setVisibility(View.INVISIBLE);
+
+                    infoButton.setBackgroundColor(Color.TRANSPARENT);
+                    goodButton.setBackgroundColor(checkedColor);
+                    careButton.setBackgroundColor(Color.TRANSPARENT);
+
+                    patientStatus = "good";
+                    break;
+                case 1:
+                    descriptionTextView.setVisibility(View.INVISIBLE);
+                    descriptionEditText.setVisibility(View.VISIBLE);
+
+                    infoButton.setBackgroundColor(checkedColor);
+                    goodButton.setBackgroundColor(Color.TRANSPARENT);
+                    careButton.setBackgroundColor(Color.TRANSPARENT);
+
+                    patientStatus = "info";
+                    break;
+                case 2:
+                    descriptionTextView.setVisibility(View.INVISIBLE);
+                    descriptionEditText.setVisibility(View.VISIBLE);
+
+                    infoButton.setBackgroundColor(Color.TRANSPARENT);
+                    goodButton.setBackgroundColor(Color.TRANSPARENT);
+                    careButton.setBackgroundColor(checkedColor);
+
+                    patientStatus = "care";
+                    break;
+            }
+            }
+        });
+
         return rootView;
     }
 
@@ -57,7 +134,7 @@ public class PatientsFragment extends Fragment implements PatientsView {
         super.onAttach(activity);
 
         try {
-            mOnPatientFetchFailedCallback = (OnPatientFetchFailedListener) activity;
+            mPatientCallback = (PatientListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnMenuItemSelectedListener");
@@ -66,7 +143,7 @@ public class PatientsFragment extends Fragment implements PatientsView {
 
     @Override
     public void resetPatientId() {
-        mOnPatientFetchFailedCallback.onPatientFetchFailedListener();
+        mPatientCallback.onPatientFetchFailedListener();
     }
 
     @Override
@@ -76,6 +153,7 @@ public class PatientsFragment extends Fragment implements PatientsView {
         acceptanceDateTextView.setText(patient.getAcceptanceDate());
         peselTextView.setText(patient.getPesel());
     }
+
 
     @Override
     public void showExamination(Examination examination) {
@@ -98,5 +176,9 @@ public class PatientsFragment extends Fragment implements PatientsView {
 
     public void getExamination(String authToken, String patientId) {
         this.presenter.getExamination(authToken, patientId);
+    }
+
+    public void setAuthToken(String authToken) {
+        this.authToken = authToken;
     }
 }

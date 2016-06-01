@@ -4,8 +4,10 @@ import android.util.Log;
 
 import com.example.david.drsiwoz.Models.Examination;
 import com.example.david.drsiwoz.Models.Patient;
+import com.example.david.drsiwoz.Models.UpPatient;
 import com.example.david.drsiwoz.REST.ApiAuthProvider;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -63,6 +65,28 @@ public class PatientsPresenter {
             @Override
             public void onFailure(Call<Examination> call, Throwable t) {
                 Log.e("fetch examination", "onFailure");
+            }
+        });
+    }
+
+    public void updatePatient(String authToken, final String patientId, UpPatient patientStatus) {
+        Call<ResponseBody> call = ApiAuthProvider.getApi(authToken).updatePatient(patientId, patientStatus);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call call, Response response) {
+                int statusCode = response.code();
+                if (statusCode == 200) {
+                    Log.d("code", "OK200");
+                }
+                else{
+                    Log.d("code", "not 200");
+                }
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+                Log.d("bb", t.toString());
+                Log.d("bb", "onFailure");
             }
         });
     }
