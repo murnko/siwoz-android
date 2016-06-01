@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity
     implements
         TileMenuFragment.OnMenuItemSelectedListener,
         TileMenuFragment.onScanInitiatedListener,
-        PatientsFragment.OnPatientFetchFailedListener {
+        PatientsFragment.PatientListener {
 
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
@@ -97,6 +97,11 @@ public class MainActivity extends AppCompatActivity
         this.patientId = null;
     }
 
+    @Override
+    public String getPatientId() {
+        return patientId;
+    }
+
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
         public DrugsFragment drugsFragment;
         public PatientsFragment patientsFragment;
@@ -105,8 +110,10 @@ public class MainActivity extends AppCompatActivity
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
             drugsFragment = new DrugsFragment();
-            patientsFragment = new PatientsFragment();
             tileMenuFragment = new TileMenuFragment();
+
+            patientsFragment = new PatientsFragment();
+            patientsFragment.setAuthToken(authToken);
         }
 
         @Override
@@ -144,7 +151,9 @@ public class MainActivity extends AppCompatActivity
             String scanContent = scanningResult.getContents();
             this.patientId = scanContent;
         }
+        mViewPager.setCurrentItem(1);
         this.mSectionsPagerAdapter.patientsFragment.getPatient(this.authToken, this.patientId);
+        this.mSectionsPagerAdapter.patientsFragment.getExamination(this.authToken, this.patientId);
     }
 
 }

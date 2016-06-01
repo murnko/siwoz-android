@@ -49,7 +49,7 @@ public class DrugsFragment extends Fragment implements DrugsView {
         adapter.clear();
         adapter.addAll(drugs);
         adapter.notifyDataSetChanged();
-        Log.d("DrugsFragment", "SHow drugs");
+        Log.d("DrugsFragment", "Show drugs");
     }
 
     @Override
