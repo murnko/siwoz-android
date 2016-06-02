@@ -1,9 +1,11 @@
 package com.example.david.drsiwoz;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -14,8 +16,12 @@ import android.view.MenuItem;
 import com.example.david.drsiwoz.Patients.PatientsFragment;
 import com.example.david.drsiwoz.Drugs.DrugsFragment;
 import com.example.david.drsiwoz.TileMenu.TileMenuFragment;
+
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+
+
 
 
 /**
@@ -32,6 +38,7 @@ public class MainActivity extends AppCompatActivity
     private ViewPager mViewPager;
     private String authToken;
     private String patientId;
+    private int requestCodeBig;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,11 +85,15 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+
     @Override
     public void onScanInitiated(int requestCode) {
+
+
+        requestCodeBig = requestCode;
         IntentIntegrator scanIntegrator = new IntentIntegrator(this);
-        Intent scanner = scanIntegrator.createScanIntent();
-        startActivityForResult(scanner,requestCode);
+        scanIntegrator.initiateScan();
+
         //scanIntegrator.initiateScan();
     }
 
@@ -146,17 +157,37 @@ public class MainActivity extends AppCompatActivity
             return null;
         }
     }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+        IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCodeBig, resultCode, data);
         if (scanningResult != null) {
-            String scanContent = scanningResult.getContents();
-            this.patientId = scanContent;
+            int usedView = mViewPager.getCurrentItem();
+
+            switch(requestCodeBig) {
+                case 11:
+                    System.out.println(requestCode);
+                    String scanContent = scanningResult.getContents();
+                    this.patientId = scanContent;
+                    mViewPager.setCurrentItem(1);
+                    this.mSectionsPagerAdapter.patientsFragment.getPatient(this.authToken, this.patientId);
+                    //this.mSectionsPagerAdapter.patientsFragment.getExamination(this.authToken, this.patientId);
+                    this.mSectionsPagerAdapter.drugsFragment.getDrugs(authToken);
+                    break;
+                case 21:
+
+                    this.mSectionsPagerAdapter.drugsFragment.getDrugs(authToken);
+                    break;
+                default:
+                    mViewPager.setCurrentItem(1);
+                    break;
+
+            }
+
         }
-        mViewPager.setCurrentItem(1);
-        this.mSectionsPagerAdapter.patientsFragment.getPatient(this.authToken, this.patientId);
-        this.mSectionsPagerAdapter.drugsFragment.getDrugs(authToken);
-        //this.mSectionsPagerAdapter.patientsFragment.getExamination(this.authToken, this.patientId);
+        else{System.out.println("scanningResult= NULL!");}
+
+
     }
 
 }
