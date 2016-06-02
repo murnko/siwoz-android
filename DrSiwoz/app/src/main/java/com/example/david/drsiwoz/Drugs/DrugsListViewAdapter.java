@@ -46,6 +46,7 @@ public class DrugsListViewAdapter extends ArrayAdapter<Drug> {
             public void onClick(View v) {
 
 
+
             }
         });
         return rowView;

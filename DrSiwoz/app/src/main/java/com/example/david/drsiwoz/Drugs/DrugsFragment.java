@@ -41,6 +41,10 @@ public class DrugsFragment extends Fragment implements DrugsView {
         adapter = new DrugsListViewAdapter(getActivity(), mockDrugsList);
         listView.setAdapter(adapter);
 
+        getDrugs("0");
+
+
+
         return rootView;
     }
 
