@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCodeBig, resultCode, data);
+        IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (scanningResult != null) {
             int usedView = mViewPager.getCurrentItem();
 
