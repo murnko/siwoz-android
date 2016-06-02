@@ -1,24 +1,21 @@
 package com.example.david.drsiwoz.TileMenu;
 
 import android.app.Activity;
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+
 import android.widget.ImageButton;
 
 import com.example.david.drsiwoz.R;
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
+
 
 
 public class TileMenuFragment extends Fragment implements TileMenuView{
-    static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
     private ImageButton patientButton;
     private ImageButton drugsButton;
     private ImageButton specialistReportsButton;
@@ -38,7 +35,7 @@ public class TileMenuFragment extends Fragment implements TileMenuView{
     }
 
     public interface onScanInitiatedListener {
-        public void onScanInitiated();
+        public void onScanInitiated(int requestCode);
     }
 
     @Override
@@ -69,11 +66,11 @@ public class TileMenuFragment extends Fragment implements TileMenuView{
         drugsButton = (ImageButton) rootView.findViewById(R.id.drugsButton);
         specialistReportsButton = (ImageButton) rootView.findViewById(R.id.specialistReportsButton);
 
-        ImageButton scanButton = (ImageButton) rootView.findViewById(R.id.scanButton);
+        scanButton = (ImageButton) rootView.findViewById(R.id.scanButton);
         scanButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mScanInitiatedCallback.onScanInitiated();
+                mScanInitiatedCallback.onScanInitiated(11);
             }
         });
 
