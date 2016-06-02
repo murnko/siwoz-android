@@ -79,9 +79,11 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onScanInitiated() {
+    public void onScanInitiated(int requestCode) {
         IntentIntegrator scanIntegrator = new IntentIntegrator(this);
-        scanIntegrator.initiateScan();
+        Intent scanner = scanIntegrator.createScanIntent();
+        startActivityForResult(scanner,requestCode);
+        //scanIntegrator.initiateScan();
     }
 
     @Override
@@ -153,7 +155,8 @@ public class MainActivity extends AppCompatActivity
         }
         mViewPager.setCurrentItem(1);
         this.mSectionsPagerAdapter.patientsFragment.getPatient(this.authToken, this.patientId);
-        this.mSectionsPagerAdapter.patientsFragment.getExamination(this.authToken, this.patientId);
+        this.mSectionsPagerAdapter.drugsFragment.getDrugs(authToken);
+        //this.mSectionsPagerAdapter.patientsFragment.getExamination(this.authToken, this.patientId);
     }
 
 }

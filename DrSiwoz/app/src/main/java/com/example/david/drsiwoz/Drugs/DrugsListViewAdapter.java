@@ -1,5 +1,6 @@
 package com.example.david.drsiwoz.Drugs;
 
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,8 +9,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.david.drsiwoz.MainActivity;
 import com.example.david.drsiwoz.Models.Drug;
 import com.example.david.drsiwoz.R;
+
 
 import java.util.List;
 
@@ -44,7 +47,8 @@ public class DrugsListViewAdapter extends ArrayAdapter<Drug> {
         applyButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
+                MainActivity activity = (MainActivity) getContext();
+                activity.onScanInitiated(21);
 
 
             }
