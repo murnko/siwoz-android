@@ -11,6 +11,7 @@ import android.widget.ListView;
 import com.example.david.drsiwoz.Models.Drug;
 import com.example.david.drsiwoz.R;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +28,7 @@ public class DrugsFragment extends Fragment implements DrugsView {
         presenter = new DrugsPresenterImpl(this);
     }
 
+
     public void getDrugs(String authToken) {
         presenter.getDrugs(authToken);
     }
@@ -41,12 +43,10 @@ public class DrugsFragment extends Fragment implements DrugsView {
         adapter = new DrugsListViewAdapter(getActivity(), mockDrugsList);
         listView.setAdapter(adapter);
 
-        getDrugs("0");
-
-
-
         return rootView;
     }
+
+
 
     @Override
     public void showDrugsList(List<Drug> drugs) {
@@ -60,4 +60,5 @@ public class DrugsFragment extends Fragment implements DrugsView {
     public void displayGetDrugsError() {
         Log.d("DrugsFragment", "Error");
     }
+
 }
