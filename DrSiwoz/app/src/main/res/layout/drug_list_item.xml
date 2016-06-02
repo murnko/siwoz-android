@@ -2,7 +2,7 @@
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:columnCount="3"
+    android:columnCount="4"
     android:rowCount="1">
 
     <TextView
@@ -28,4 +28,12 @@
         android:id="@+id/drugUnitTextView"
         android:layout_column="2"
         android:layout_columnWeight="1" />
+
+    <Button
+        android:id="@+id/applyBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:text="Apply" />
 </GridLayout>

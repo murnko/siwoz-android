@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.david.drsiwoz.Models.Drug;
@@ -30,6 +31,7 @@ public class DrugsListViewAdapter extends ArrayAdapter<Drug> {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.drug_list_item, parent, false);
+
         TextView drugNameTextView = (TextView) rowView.findViewById(R.id.drugNameTextView);
         TextView drugDosageTextView = (TextView) rowView.findViewById(R.id.drugDosageTextView);
         TextView drugUnitTextView = (TextView) rowView.findViewById(R.id.drugUnitTextView);
@@ -38,6 +40,14 @@ public class DrugsListViewAdapter extends ArrayAdapter<Drug> {
         drugDosageTextView.setText(String.valueOf(drug.getDosage()));
         drugUnitTextView.setText(drug.getUnit());
 
+        Button applyButton = (Button) rowView.findViewById(R.id.applyBtn);
+        applyButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+
+            }
+        });
         return rowView;
     }
 }
