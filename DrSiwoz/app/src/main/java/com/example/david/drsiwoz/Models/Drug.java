@@ -1,5 +1,7 @@
 package com.example.david.drsiwoz.Models;
 
+import android.text.BoringLayout;
+
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -18,11 +20,25 @@ public class Drug {
     @SerializedName("unit")
     String unit;
 
-    public Drug( String id, String name, float serving, String unit){
+    @SerializedName("applied")
+    Boolean applied;
+
+    @SerializedName("canceled")
+    Boolean canceled;
+
+    @SerializedName("accepted")
+    Boolean accepted;
+
+
+
+    public Drug( String id, String name, float serving, String unit, Boolean applied, Boolean canceled, Boolean accepted){
         this.id = id;
         this.name = name;
         this.dosage = serving;
         this.unit = unit;
+        this.applied = applied;
+        this.canceled = canceled;
+        this.accepted = accepted;
     }
 
     public String getId() {
@@ -40,4 +56,10 @@ public class Drug {
     public String getUnit() {
         return unit;
     }
+
+    public Boolean getApplied() {return  applied;}
+
+    public Boolean getCanceled() {return canceled;}
+
+    public Boolean getAccepted() {return accepted;}
 }
