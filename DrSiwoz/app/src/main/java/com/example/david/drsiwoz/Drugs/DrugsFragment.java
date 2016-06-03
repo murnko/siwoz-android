@@ -32,6 +32,9 @@ public class DrugsFragment extends Fragment implements DrugsView {
     public void getDrugs(String authToken) {
         presenter.getDrugs(authToken);
     }
+    public void applyDrug(String authToken, String appliedDrugId){
+        presenter.applyDrug(authToken, appliedDrugId);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -23,6 +23,12 @@ public class DrugsPresenterImpl implements DrugsPresenter, DrugsInteractor.OnGet
     }
 
     @Override
+    public void applyDrug(String authToken, String appliedDrugId) {
+        drugsInteractor.applyDrug(this, authToken, appliedDrugId);
+
+    }
+
+    @Override
     public void onError() {
        drugsView.displayGetDrugsError();
     }

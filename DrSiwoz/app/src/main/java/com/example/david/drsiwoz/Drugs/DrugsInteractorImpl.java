@@ -7,6 +7,7 @@ import com.example.david.drsiwoz.REST.ApiAuthProvider;
 
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -39,4 +40,27 @@ public class DrugsInteractorImpl implements DrugsInteractor {
             }
         });
     }
+
+    @Override
+    public void applyDrug(OnGetDrugsListener listener, String authToken, String appliedDrugId) {
+        Call<ResponseBody> call = ApiAuthProvider.getApi(authToken).applyDrug(appliedDrugId);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call call, Response response) {
+                int statusCode = response.code();
+                if (statusCode == 200) {
+                    Log.d("code", "OK200");
+                } else {
+                    Log.d("code", "not 200");
+                }
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+                Log.d("bb", t.toString());
+                Log.d("bb", "onFailureDrugAplly");
+            }
+        });
+    }
+
 }

@@ -5,4 +5,5 @@ package com.example.david.drsiwoz.Drugs;
  */
 public interface DrugsPresenter {
     void getDrugs(String authToken);
+    void applyDrug(String authToken, String appliedDrugId);
 }
