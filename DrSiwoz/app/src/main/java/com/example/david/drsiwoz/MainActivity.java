@@ -175,6 +175,11 @@ public class MainActivity extends AppCompatActivity
                 case 21:
                     this.appliedDrugId = scanContent;
                     this.mSectionsPagerAdapter.drugsFragment.applyDrug(authToken,appliedDrugId);
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     this.mSectionsPagerAdapter.drugsFragment.getDrugs(authToken);
                     break;
                 default:
