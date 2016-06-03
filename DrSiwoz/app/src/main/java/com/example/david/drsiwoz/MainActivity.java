@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity
     private ViewPager mViewPager;
     private String authToken;
     private String patientId;
+    private String appliedDrugId;
     private int requestCodeBig;
 
     @Override
@@ -162,12 +163,9 @@ public class MainActivity extends AppCompatActivity
 
         IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (scanningResult != null) {
-            int usedView = mViewPager.getCurrentItem();
-
+            String scanContent = scanningResult.getContents();
             switch(requestCodeBig) {
                 case 11:
-                    System.out.println(requestCode);
-                    String scanContent = scanningResult.getContents();
                     this.patientId = scanContent;
                     mViewPager.setCurrentItem(1);
                     this.mSectionsPagerAdapter.patientsFragment.getPatient(this.authToken, this.patientId);
@@ -175,7 +173,8 @@ public class MainActivity extends AppCompatActivity
                     this.mSectionsPagerAdapter.drugsFragment.getDrugs(authToken);
                     break;
                 case 21:
-
+                    this.appliedDrugId = scanContent;
+                    this.mSectionsPagerAdapter.drugsFragment.applyDrug(authToken,appliedDrugId);
                     this.mSectionsPagerAdapter.drugsFragment.getDrugs(authToken);
                     break;
                 default:
