@@ -3,14 +3,21 @@
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:columnCount="4"
-    android:rowCount="1">
+    android:rowCount="5">
+
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox"
+        android:layout_column="0" />
 
     <TextView
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:text="Name"
         android:id="@+id/drugNameTextView"
-        android:layout_column="0"
+        android:layout_column="1"
         android:layout_columnWeight="1" />
 
     <TextView
@@ -18,7 +25,7 @@
         android:layout_height="wrap_content"
         android:text="dosage"
         android:id="@+id/drugDosageTextView"
-        android:layout_column="1"
+        android:layout_column="2"
         android:layout_columnWeight="1" />
 
     <TextView
@@ -26,14 +33,9 @@
         android:layout_height="wrap_content"
         android:text="unit"
         android:id="@+id/drugUnitTextView"
-        android:layout_column="2"
+        android:layout_column="3"
         android:layout_columnWeight="1" />
 
-    <Button
-        android:id="@+id/applyBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
-        android:text="Apply" />
+
+
 </GridLayout>
