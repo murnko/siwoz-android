@@ -9,6 +9,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 
@@ -24,6 +25,7 @@ import com.example.david.drsiwoz.Models.UpPatient;
  */
 public interface Api {
 
+    //Patient API
     @GET("api/patients/{patient_id}")
     Call<Patient> getPatient(@Path("patient_id") String patientId);
 
@@ -33,9 +35,16 @@ public interface Api {
     @POST("api/patients/{patientId}/status")
     Call<ResponseBody> updatePatient(@Path("patientId") String patientId, @Body UpPatient updatePatientBody);
 
+    //Drugs API
     @GET("api/drugs")
     Call<List<Drug>> getDrugs();
 
+    @Headers("Content-Type: application/json")
+    @PUT("api/drugs/{drugId}")
+    Call<ResponseBody> applyDrug(@Path("drugId") String drugId);
+
+
+    //Auth API
     @Headers("Content-Type: application/json")
     @POST("auth/login")
     Call<Token> getToken(@Body AuthData authData);
