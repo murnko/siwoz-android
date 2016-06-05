@@ -25,7 +25,8 @@ public class DrugsListViewAdapter extends ArrayAdapter<Drug> {
     private Button applyButton;
     final Integer appliedColor = getContext().getResources().getColor(android.R.color.holo_green_light);
     final Integer canceledColor = getContext().getResources().getColor(android.R.color.holo_red_light);
-    final Integer waitingColor = getContext().getResources().getColor(android.R.color.holo_blue_bright);
+    final Integer acceptedColor = getContext().getResources().getColor(android.R.color.holo_blue_bright);
+    final Integer suspendedColor = getContext().getResources().getColor(android.R.color.holo_orange_dark);
 
     public DrugsListViewAdapter(Context context, List<Drug> values) {
         super(context, R.layout.drug_list_item, values);
@@ -50,23 +51,30 @@ public class DrugsListViewAdapter extends ArrayAdapter<Drug> {
 
 
 
-        if (drug.getApplied().booleanValue()){
+        if (drug.isApplied().booleanValue()){
             drugNameTextView.setBackgroundColor(appliedColor);
             drugDosageTextView.setBackgroundColor(appliedColor);
             drugUnitTextView.setBackgroundColor(appliedColor);
         }
 
-        if (drug.getCanceled().booleanValue()){
+        if (drug.isCanceled().booleanValue()){
             drugNameTextView.setBackgroundColor(canceledColor);
             drugDosageTextView.setBackgroundColor(canceledColor);
             drugUnitTextView.setBackgroundColor(canceledColor);
         }
 
-        if (drug.getAccepted().booleanValue()){
-            drugNameTextView.setBackgroundColor(canceledColor);
-            drugDosageTextView.setBackgroundColor(canceledColor);
-            drugUnitTextView.setBackgroundColor(canceledColor);
+        if (drug.isAccepted().booleanValue()){
+            drugNameTextView.setBackgroundColor(acceptedColor);
+            drugDosageTextView.setBackgroundColor(acceptedColor);
+            drugUnitTextView.setBackgroundColor(acceptedColor);
         }
+
+        if (drug.isSuspended().booleanValue()){
+            drugNameTextView.setBackgroundColor(suspendedColor);
+            drugDosageTextView.setBackgroundColor(suspendedColor);
+            drugUnitTextView.setBackgroundColor(suspendedColor);
+        }
+
 
 
         return rowView;

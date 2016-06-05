@@ -29,9 +29,12 @@ public class Drug {
     @SerializedName("accepted")
     Boolean accepted;
 
+    @SerializedName("suspended")
+    Boolean suspended;
 
 
-    public Drug( String id, String name, float serving, String unit, Boolean applied, Boolean canceled, Boolean accepted){
+
+    public Drug( String id, String name, float serving, String unit, Boolean applied, Boolean canceled, Boolean accepted, Boolean suspended){
         this.id = id;
         this.name = name;
         this.dosage = serving;
@@ -39,6 +42,7 @@ public class Drug {
         this.applied = applied;
         this.canceled = canceled;
         this.accepted = accepted;
+        this.suspended = suspended;
     }
 
     public String getId() {
@@ -57,9 +61,11 @@ public class Drug {
         return unit;
     }
 
-    public Boolean getApplied() {return  applied;}
+    public Boolean isApplied() {return  applied;}
 
-    public Boolean getCanceled() {return canceled;}
+    public Boolean isCanceled() {return canceled;}
 
-    public Boolean getAccepted() {return accepted;}
+    public Boolean isAccepted() {return accepted;}
+
+    public Boolean isSuspended() {return suspended;}
 }
