@@ -47,6 +47,11 @@ public interface Api {
     Call<ResponseBody> acceptDrugs(@Body List<String> listId );
 
 
+    //Exam API
+    @GET("api/exams")
+    Call<List<Examination>> getExams();
+
+
     //Auth API
     @Headers("Content-Type: application/json")
     @POST("auth/login")
