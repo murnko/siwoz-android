@@ -43,6 +43,9 @@ public interface Api {
     @PUT("api/drugs/{drugId}")
     Call<ResponseBody> applyDrug(@Path("drugId") String drugId);
 
+    @PUT("api/drugs")
+    Call<ResponseBody> acceptDrugs(@Body List<String> listId );
+
 
     //Auth API
     @Headers("Content-Type: application/json")
