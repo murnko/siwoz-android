@@ -18,7 +18,9 @@ import com.example.david.drsiwoz.Models.AuthData;
 import com.example.david.drsiwoz.Models.Drug;
 import com.example.david.drsiwoz.Models.Examination;
 import com.example.david.drsiwoz.Models.Patient;
+import com.example.david.drsiwoz.Models.Serving;
 import com.example.david.drsiwoz.Models.UpPatient;
+import com.example.david.drsiwoz.Models.UpServings;
 
 /**
  * Created by david on 2016-03-19.
@@ -36,15 +38,16 @@ public interface Api {
     Call<ResponseBody> updatePatient(@Path("patientId") String patientId, @Body UpPatient updatePatientBody);
 
     //Drugs API
-    @GET("api/drugs")
-    Call<List<Drug>> getDrugs();
+    @GET("api/patients/{patientId}/servings")
+    Call<List<Drug>> getServings(@Path("patientId") String patientId);
 
     @Headers("Content-Type: application/json")
-    @PUT("api/drugs/{drugId}")
-    Call<ResponseBody> applyDrug(@Path("drugId") String drugId);
+    @POST("api/patients/{patientId}/drugs/apply")
+    Call<ResponseBody> applyDrug(@Path("patientId") String patientId, @Body String servingId);
 
-    @PUT("api/drugs")
-    Call<ResponseBody> acceptDrugs(@Body List<String> listId );
+    @POST("api/patients/{patientId}/servings")
+    Call<ResponseBody> updateServing(@Path("patientId") String patientId, @Body UpServings upServings);
+
 
 
     //Auth API
