@@ -21,8 +21,8 @@ public class Serving {
         @SerializedName("applied")
         Boolean applied;
 
-        @SerializedName("canceled")
-        Boolean canceled;
+        @SerializedName("cancelled")
+        Boolean cancelled;
 
         @SerializedName("accepted")
         Boolean accepted;
@@ -32,13 +32,13 @@ public class Serving {
 
 
 
-        public Serving( String id, String name, float serving, String unit, Boolean applied, Boolean canceled, Boolean accepted, Boolean suspended){
+        public Serving( String id, String name, float serving, String unit, Boolean applied, Boolean cancelled, Boolean accepted, Boolean suspended){
             this.id = id;
             this.name = name;
             this.dosage = serving;
             this.unit = unit;
             this.applied = applied;
-            this.canceled = canceled;
+            this.cancelled = cancelled;
             this.accepted = accepted;
             this.suspended = suspended;
         }
@@ -61,7 +61,7 @@ public class Serving {
 
         public Boolean isApplied() {return  applied;}
 
-        public Boolean isCanceled() {return canceled;}
+        public Boolean isCancelled() {return cancelled;}
 
         public Boolean isAccepted() {return accepted;}
 

@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
-    private String authToken;
+    private String authToken = "8729049481d5e40c78b0bff64523e4ff72283756";
     private String patientId;
     private String appliedDrugId;
     private int requestCodeBig;
@@ -175,7 +175,7 @@ public class MainActivity extends AppCompatActivity
                 case 11:
                     this.patientId = scanContent;
                     mViewPager.setCurrentItem(1);
-                    //System.out.println()
+                    System.out.println(patientId);
                     this.mSectionsPagerAdapter.patientsFragment.getPatient(this.authToken, this.patientId);
                     //this.mSectionsPagerAdapter.patientsFragment.getExamination(this.authToken, this.patientId);
                     this.mSectionsPagerAdapter.drugsFragment.getServings(this.authToken,this.patientId);

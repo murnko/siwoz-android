@@ -58,7 +58,7 @@ public class DrugsListViewAdapter extends ArrayAdapter<Serving> {
             drugUnitTextView.setBackgroundColor(appliedColor);
         }
 
-        if (drug.isCanceled().booleanValue()){
+        if (drug.isCancelled().booleanValue()){
             drugNameTextView.setBackgroundColor(canceledColor);
             drugDosageTextView.setBackgroundColor(canceledColor);
             drugUnitTextView.setBackgroundColor(canceledColor);

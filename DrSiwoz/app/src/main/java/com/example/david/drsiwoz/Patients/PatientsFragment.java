@@ -148,6 +148,7 @@ public class PatientsFragment extends Fragment implements PatientsView {
 
     @Override
     public void showPatient(Patient patient) {
+
         nameTextView.setText(patient.getName());
         releaseDateTextView.setText(patient.getReleaseDate());
         acceptanceDateTextView.setText(patient.getAcceptanceDate());
