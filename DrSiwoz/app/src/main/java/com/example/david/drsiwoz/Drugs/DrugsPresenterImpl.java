@@ -1,6 +1,7 @@
 package com.example.david.drsiwoz.Drugs;
 
-import com.example.david.drsiwoz.Models.Drug;
+import com.example.david.drsiwoz.Models.Serving;
+import com.example.david.drsiwoz.Models.UpServings;
 
 import java.util.List;
 
@@ -18,13 +19,18 @@ public class DrugsPresenterImpl implements DrugsPresenter, DrugsInteractor.OnGet
     }
 
     @Override
-    public void getDrugs(String authToken) {
-        drugsInteractor.getDrugs(this, authToken);
+    public void getServings(String authToken, String patientId) {
+        drugsInteractor.getServings(this, authToken, patientId);
     }
 
     @Override
-    public void applyDrug(String authToken, String appliedDrugId) {
-        drugsInteractor.applyDrug(this, authToken, appliedDrugId);
+    public void applyDrug(String authToken,String patientId, String appliedDrugId) {
+        drugsInteractor.applyDrug(this, authToken,patientId, appliedDrugId);
+
+    }
+
+    @Override
+    public void updateServings(String authToken, String patientID, UpServings upServingsList) {
 
     }
 
@@ -34,7 +40,7 @@ public class DrugsPresenterImpl implements DrugsPresenter, DrugsInteractor.OnGet
     }
 
     @Override
-    public void onSuccess(List<Drug> drugs) {
-        drugsView.showDrugsList(drugs);
+    public void onSuccess(List<Serving> servings) {
+        drugsView.showDrugsList(servings);
     }
 }

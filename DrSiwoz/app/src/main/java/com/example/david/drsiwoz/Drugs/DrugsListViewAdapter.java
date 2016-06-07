@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.david.drsiwoz.MainActivity;
 import com.example.david.drsiwoz.Models.Drug;
+import com.example.david.drsiwoz.Models.Serving;
 import com.example.david.drsiwoz.R;
 
 
@@ -19,16 +20,16 @@ import java.util.List;
 /**
  * Created by jacek on 26.05.16.
  */
-public class DrugsListViewAdapter extends ArrayAdapter<Drug> {
+public class DrugsListViewAdapter extends ArrayAdapter<Serving> {
     private final Context context;
-    private final List<Drug> values;
+    private final List<Serving> values;
     private Button applyButton;
     final Integer appliedColor = getContext().getResources().getColor(android.R.color.holo_green_light);
     final Integer canceledColor = getContext().getResources().getColor(android.R.color.holo_red_light);
     final Integer acceptedColor = getContext().getResources().getColor(android.R.color.holo_blue_bright);
     final Integer suspendedColor = getContext().getResources().getColor(android.R.color.holo_orange_dark);
 
-    public DrugsListViewAdapter(Context context, List<Drug> values) {
+    public DrugsListViewAdapter(Context context, List<Serving> values) {
         super(context, R.layout.drug_list_item, values);
         this.context = context;
         this.values = values;
@@ -44,7 +45,7 @@ public class DrugsListViewAdapter extends ArrayAdapter<Drug> {
         TextView drugNameTextView = (TextView) rowView.findViewById(R.id.drugNameTextView);
         TextView drugDosageTextView = (TextView) rowView.findViewById(R.id.drugDosageTextView);
         TextView drugUnitTextView = (TextView) rowView.findViewById(R.id.drugUnitTextView);
-        Drug drug = values.get(position);
+        Serving drug = values.get(position);
         drugNameTextView.setText(drug.getName());
         drugDosageTextView.setText(String.valueOf(drug.getDosage()));
         drugUnitTextView.setText(drug.getUnit());
