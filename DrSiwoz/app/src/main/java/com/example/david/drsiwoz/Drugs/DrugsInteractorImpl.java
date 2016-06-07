@@ -22,7 +22,7 @@ import retrofit2.Response;
 public class DrugsInteractorImpl implements DrugsInteractor {
 
     @Override
-    public void getServings(final OnGetDrugsListener listener,String patientId, String authToken) {
+    public void getServings(final OnGetDrugsListener listener, String authToken, String patientId) {
 
         Log.d("get Drugs", "started");
         Call<List<Serving>> call = ApiAuthProvider.getApi(authToken).getServings(patientId);
