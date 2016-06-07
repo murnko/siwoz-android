@@ -100,7 +100,7 @@ public class DrugsFragment extends Fragment implements DrugsView {
                 Serving currentItem;
                 for(Integer i =0; i < quant; i++){
                     currentItem = adapter.getItem(0);
-                    if (currentItem.isCanceled()){
+                    if (currentItem.isCancelled()){
                         acceptedDrugsList.add(currentItem.getId().toString());
                     }
                 }
