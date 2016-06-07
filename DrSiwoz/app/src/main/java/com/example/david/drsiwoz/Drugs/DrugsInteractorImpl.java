@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.david.drsiwoz.MainActivity;
 import com.example.david.drsiwoz.Models.Drug;
+import com.example.david.drsiwoz.Models.Serving;
 import com.example.david.drsiwoz.Models.UpServings;
 import com.example.david.drsiwoz.Patients.PatientsFragment;
 import com.example.david.drsiwoz.REST.ApiAuthProvider;
@@ -19,27 +20,28 @@ import retrofit2.Response;
  * Created by jacek on 25.05.16.
  */
 public class DrugsInteractorImpl implements DrugsInteractor {
-    PatientsFragment.PatientListener mPatientCallback;
+
     @Override
-    public void getServings(final OnGetDrugsListener listener, String authToken) {
-        String patientID = mPatientCallback.getPatientId();
+    public void getServings(final OnGetDrugsListener listener,String patientId, String authToken) {
+
         Log.d("get Drugs", "started");
-        Call<List<Drug>> call = ApiAuthProvider.getApi(authToken).getServings(patientID);
-        call.enqueue(new Callback<List<Drug>>() {
+        Call<List<Serving>> call = ApiAuthProvider.getApi(authToken).getServings(patientId);
+        call.enqueue(new Callback<List<Serving>>() {
             @Override
-            public void onResponse(Call<List<Drug>> call, Response<List<Drug>> response) {
+            public void onResponse(Call<List<Serving>> call, Response<List<Serving>> response) {
                 int statusCode = response.code();
                 Log.d("status code", String.valueOf(statusCode));
                 if (statusCode != 200) {
                     listener.onError();
                 } else {
-                    List<Drug> drugs = response.body();
-                    listener.onSuccess(drugs);
+                    List<Serving> servings = response.body();
+                    listener.onSuccess(servings);
                 }
             }
 
+
             @Override
-            public void onFailure(Call<List<Drug>> call, Throwable t) {
+            public void onFailure(Call<List<Serving>> call, Throwable t) {
                 Log.d("failure", t.toString());
                 listener.onError();
             }
@@ -47,9 +49,10 @@ public class DrugsInteractorImpl implements DrugsInteractor {
     }
 
     @Override
-    public void applyDrug(OnGetDrugsListener listener, String authToken, String appliedDrugId) {
-        String patientID = mPatientCallback.getPatientId();
-        Call<ResponseBody> call = ApiAuthProvider.getApi(authToken).applyDrug(patientID, appliedDrugId);
+    public void applyDrug(OnGetDrugsListener listener, String authToken,String patientId, String appliedDrugId) {
+
+
+        Call<ResponseBody> call = ApiAuthProvider.getApi(authToken).applyDrug(patientId, appliedDrugId);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call call, Response response) {
@@ -71,9 +74,8 @@ public class DrugsInteractorImpl implements DrugsInteractor {
 
 
     @Override
-    public void updateServings(OnGetDrugsListener listener, String authToken, UpServings upServingsList) {
-        String patientID = mPatientCallback.getPatientId();
-        Call<ResponseBody> call = ApiAuthProvider.getApi(authToken).updateServing(patientID, upServingsList);
+    public void updateServings(OnGetDrugsListener listener, String authToken,String patientId, UpServings upServingsList) {
+        Call<ResponseBody> call = ApiAuthProvider.getApi(authToken).updateServing(patientId, upServingsList);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call call, Response response) {

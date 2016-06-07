@@ -39,7 +39,7 @@ public interface Api {
 
     //Drugs API
     @GET("api/patients/{patientId}/servings")
-    Call<List<Drug>> getServings(@Path("patientId") String patientId);
+    Call<List<Serving>> getServings(@Path("patientId") String patientId);
 
     @Headers("Content-Type: application/json")
     @POST("api/patients/{patientId}/drugs/apply")

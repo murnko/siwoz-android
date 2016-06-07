@@ -10,6 +10,7 @@ import java.util.List;
  * Created by jacek on 25.05.16.
  */
 public interface DrugsInteractor {
+
     interface OnGetDrugsListener {
 
         void onError();
@@ -18,7 +19,8 @@ public interface DrugsInteractor {
     }
 
 
+
     void getServings(OnGetDrugsListener listener, String authToken, String patientId);
     void applyDrug(OnGetDrugsListener listener, String authToken,String patientId, String appliedDrugId);
-    void updateServings(OnGetDrugsListener listener, String authToken, UpServings upServingsList);
+    void updateServings(OnGetDrugsListener listener, String authToken,String patientId, UpServings upServingsList);
 }

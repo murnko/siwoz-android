@@ -3,6 +3,7 @@ package com.example.david.drsiwoz;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
@@ -101,7 +102,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onMenuItemSelected(int position) {
         if (position == 2) {
-            mSectionsPagerAdapter.drugsFragment.getDrugs(authToken);
+            mSectionsPagerAdapter.drugsFragment.getServings(authToken,patientId);
         }
         mViewPager.setCurrentItem(position);
     }
@@ -115,6 +116,12 @@ public class MainActivity extends AppCompatActivity
     public String getPatientId() {
         return patientId;
     }
+
+    public String getauthToken() {
+        return authToken;
+    }
+
+
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
         public DrugsFragment drugsFragment;
@@ -137,7 +144,7 @@ public class MainActivity extends AppCompatActivity
             } else if (position == 1) {
                 return patientsFragment;
             } else{
-                drugsFragment.getDrugs(authToken);
+                drugsFragment.getServings(authToken,patientId);
                 return drugsFragment;
             }
         }
@@ -168,19 +175,20 @@ public class MainActivity extends AppCompatActivity
                 case 11:
                     this.patientId = scanContent;
                     mViewPager.setCurrentItem(1);
+                    //System.out.println()
                     this.mSectionsPagerAdapter.patientsFragment.getPatient(this.authToken, this.patientId);
                     //this.mSectionsPagerAdapter.patientsFragment.getExamination(this.authToken, this.patientId);
-                    this.mSectionsPagerAdapter.drugsFragment.getDrugs(authToken);
+                    this.mSectionsPagerAdapter.drugsFragment.getServings(this.authToken,this.patientId);
                     break;
                 case 21:
                     this.appliedDrugId = scanContent;
-                    this.mSectionsPagerAdapter.drugsFragment.applyDrug(authToken,appliedDrugId);
+                    this.mSectionsPagerAdapter.drugsFragment.applyDrug(this.authToken,this.patientId,appliedDrugId);
                     try {
                         Thread.sleep(100);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    this.mSectionsPagerAdapter.drugsFragment.getDrugs(authToken);
+                    this.mSectionsPagerAdapter.drugsFragment.getServings(this.authToken,this.patientId);
                     break;
                 default:
                     mViewPager.setCurrentItem(1);

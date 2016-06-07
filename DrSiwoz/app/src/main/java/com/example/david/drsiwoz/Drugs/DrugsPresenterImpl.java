@@ -31,6 +31,7 @@ public class DrugsPresenterImpl implements DrugsPresenter, DrugsInteractor.OnGet
 
     @Override
     public void updateServings(String authToken, String patientID, UpServings upServingsList) {
+        drugsInteractor.updateServings(this, authToken, patientID, upServingsList);
 
     }
 

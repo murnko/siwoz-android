@@ -52,7 +52,9 @@ public class DrugsFragment extends Fragment implements DrugsView {
         listView = (ListView) rootView.findViewById(R.id.listViewDrugs);
         applyButton = (Button) rootView.findViewById(R.id.applyBtn);
         Button acceptButton = (Button) rootView.findViewById(R.id.acceptBtn);
-        List<Drug> mockDrugsList = new ArrayList<>();
+        Button cancelButton = (Button) rootView.findViewById(R.id.cancelBtn);
+        List<Serving> mockDrugsList = new ArrayList<>();
+
         adapter = new DrugsListViewAdapter(getActivity(), mockDrugsList);
         listView.setAdapter(adapter);
 
@@ -70,12 +72,42 @@ public class DrugsFragment extends Fragment implements DrugsView {
         acceptButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                List<String> acceptedDrugsList = new ArrayList<>();
                 MainActivity activity = (MainActivity) getActivity();
-                String PatientId = activity.getPatientId();
-//                adapter.
-//                updateServing();
+                String patientId = activity.getPatientId();
+                String authToken = activity.getauthToken();
+                Integer quant = adapter.getCount();
+                Serving currentItem;
+                for(Integer i =0; i < quant; i++){
+                    currentItem = adapter.getItem(0);
+                    if (currentItem.isAccepted()){
+                        acceptedDrugsList.add(currentItem.getId().toString());
+                    }
+                }
+                UpServings update = new UpServings("accept",acceptedDrugsList);
+                updateServing(authToken, patientId, update);
+            }
+        });
+
+        cancelButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                List<String> acceptedDrugsList = new ArrayList<>();
+                MainActivity activity = (MainActivity) getActivity();
+                String patientId = activity.getPatientId();
+                String authToken = activity.getauthToken();
+                Integer quant = adapter.getCount();
+                Serving currentItem;
+                for(Integer i =0; i < quant; i++){
+                    currentItem = adapter.getItem(0);
+                    if (currentItem.isCanceled()){
+                        acceptedDrugsList.add(currentItem.getId().toString());
+                    }
+                }
+                UpServings update = new UpServings("accept",acceptedDrugsList);
 
 
+                updateServing(authToken, patientId, update);
             }
         });
 
