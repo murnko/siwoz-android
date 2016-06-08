@@ -36,7 +36,6 @@ public interface Api {
     Call<ResponseBody> updatePatient(@Path("patientId") String patientId, @Body UpPatient updatePatientBody);
 
     //Drugs API
-
     @GET("api/patients/{patientId}/servings")
     Call<List<Serving>> getServings(@Path("patientId") String patientId);
 
@@ -47,8 +46,6 @@ public interface Api {
     @POST("api/patients/{patientId}/servings")
     Call<List<Serving>> updateServing(@Path("patientId") String patientId, @Body UpServings upServings);
 
-
-
     //Medical Tests Api
     @GET("api/patients/{patientId}/medtests")
     Call<List<MedicalTest>> getTests(@Path("patientId") String patientId);
@@ -56,11 +53,9 @@ public interface Api {
     @POST("api/patients/{patientId}/medtests")
     Call<List<MedicalTest>> requestTest(@Path("patientId") String patientId, @Body String requestedTestId);
 
-
     //Exam API
     @GET("api/exams")
     Call<List<MedicalTest>> getExams();
-
 
     //Auth API
     @Headers("Content-Type: application/json")

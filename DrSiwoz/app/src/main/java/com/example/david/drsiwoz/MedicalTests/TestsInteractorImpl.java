@@ -18,10 +18,8 @@ import retrofit2.Response;
  */
 public class TestsInteractorImpl implements TestsInteractor {
 
-
     @Override
     public void getTests(final OnGetTestsListener listener, String authToken, String patientId) {
-        Log.d("get Drugs", "started");
         Call<List<MedicalTest>> call = ApiAuthProvider.getApi(authToken).getTests(patientId);
         call.enqueue(new Callback<List<MedicalTest>>() {
             @Override

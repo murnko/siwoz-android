@@ -35,24 +35,17 @@ public class TestsListViewAdapter extends ArrayAdapter{
         View rowView = inflater.inflate(R.layout.medtest_list_item, parent, false);
 
 
-        TextView descTextView = (TextView) rowView.findViewById(R.id.doctorNameTextView);
+        TextView descTextView = (TextView) rowView.findViewById(R.id.examinationDescriptionTextView);
         TextView docNameTextView = (TextView) rowView.findViewById(R.id.examinationDescriptionTextView);
         TextView createdTextView = (TextView) rowView.findViewById(R.id.examinationDateTextView);
-        TextView statusTextView = (TextView) rowView.findViewById(R.id.examinationStatusTextView);
+//        TextView statusTextView = (TextView) rowView.findViewById(R.id.examinationStatusTextView);
         MedicalTest test = values.get(position);
-
-
-
-
-        if (test.getStatus() == "Done"){
-            statusTextView.setBackgroundColor(doneColor);
-        }
-        if (test.getStatus() == "InProgress"){
-            statusTextView.setBackgroundColor(progressColor);
-        }
-
-
-
+//        if (test.getStatus() == "Done"){
+//            statusTextView.setBackgroundColor(doneColor);
+//        }
+//        if (test.getStatus() == "InProgress"){
+//            statusTextView.setBackgroundColor(progressColor);
+//        }
 
         return rowView;
     }
