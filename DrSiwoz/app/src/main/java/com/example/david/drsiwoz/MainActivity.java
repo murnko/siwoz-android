@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.david.drsiwoz.MedicalTests.TestsFragment;
 import com.example.david.drsiwoz.Patients.PatientsFragment;
 import com.example.david.drsiwoz.Drugs.DrugsFragment;
 import com.example.david.drsiwoz.TileMenu.TileMenuFragment;
@@ -127,11 +128,13 @@ public class MainActivity extends AppCompatActivity
         public DrugsFragment drugsFragment;
         public PatientsFragment patientsFragment;
         public TileMenuFragment tileMenuFragment;
+        public TestsFragment testsFragment;
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
             drugsFragment = new DrugsFragment();
             tileMenuFragment = new TileMenuFragment();
+            testsFragment = new TestsFragment();
 
             patientsFragment = new PatientsFragment();
             patientsFragment.setAuthToken(authToken);
@@ -143,15 +146,19 @@ public class MainActivity extends AppCompatActivity
                 return tileMenuFragment;
             } else if (position == 1) {
                 return patientsFragment;
-            } else{
+            } else if (position == 2) {
                 drugsFragment.getServings(authToken,patientId);
                 return drugsFragment;
+            } else if (position == 3) {
+                return testsFragment;
+            } else {
+                return null;
             }
         }
 
         @Override
         public int getCount() {
-            return 3;
+            return 4;
         }
 
         @Override
