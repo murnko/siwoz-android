@@ -38,15 +38,16 @@ public interface Api {
     Call<ResponseBody> updatePatient(@Path("patientId") String patientId, @Body UpPatient updatePatientBody);
 
     //Drugs API
+
     @GET("api/patients/{patientId}/servings")
     Call<List<Serving>> getServings(@Path("patientId") String patientId);
 
     @Headers("Content-Type: application/json")
     @POST("api/patients/{patientId}/drugs/apply")
-    Call<ResponseBody> applyDrug(@Path("patientId") String patientId, @Body String servingId);
+    Call<List<Serving>> applyDrug(@Path("patientId") String patientId, @Body String servingId);
 
     @POST("api/patients/{patientId}/servings")
-    Call<ResponseBody> updateServing(@Path("patientId") String patientId, @Body UpServings upServings);
+    Call<List<Serving>> updateServing(@Path("patientId") String patientId, @Body UpServings upServings);
 
 
 
