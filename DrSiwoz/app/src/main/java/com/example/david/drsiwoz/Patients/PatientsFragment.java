@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import com.example.david.drsiwoz.Models.MedicalTest;
+import com.example.david.drsiwoz.Models.PatientStatus;
 import com.example.david.drsiwoz.Models.UpPatient;
 import com.example.david.drsiwoz.R;
 import com.example.david.drsiwoz.Models.Patient;
@@ -159,28 +159,28 @@ public class PatientsFragment extends Fragment implements PatientsView {
         descriptionEditText.setText(new String(""));
     }
 
-//    @Override
-//    public void showExamination(MedicalTest medicalTest) {
-//        examinationDateTextView.setText(medicalTest.getCreated());
-//        examinationDoctorTextView.setText(medicalTest.getDoctorName());
-//        examinationDescriptionTextView.setText(medicalTest.getDescription());
-//        String status = medicalTest.getStatus();
-//        if (status.equals("i")) {
-//            examinationDescriptionTextView.setTextColor(Color.BLUE);
-//        } else if (status.equals("g")) {
-//            examinationDescriptionTextView.setTextColor(Color.GREEN);
-//        } else if (status.equals("c")) {
-//            examinationDescriptionTextView.setTextColor(Color.CYAN);
-//        }
-//    }
+    @Override
+    public void showPatientStatus(PatientStatus patientStatus) {
+        examinationDateTextView.setText(patientStatus.getCreated());
+        examinationDoctorTextView.setText(patientStatus.getDoctorName());
+        examinationDescriptionTextView.setText(patientStatus.getDescription());
+        String status = patientStatus.getStatus();
+        if (status.equals("i")) {
+            examinationDescriptionTextView.setTextColor(Color.BLUE);
+        } else if (status.equals("g")) {
+            examinationDescriptionTextView.setTextColor(Color.GREEN);
+        } else if (status.equals("c")) {
+            examinationDescriptionTextView.setTextColor(Color.CYAN);
+        }
+    }
 
     public void getPatient(String authToken, String patientId) {
         this.presenter.getPatient(authToken, patientId);
     }
 
-//    public void getExamination(String authToken, String patientId) {
-//        this.presenter.getExamination(authToken, patientId);
-//    }
+    public void getPatientStatus(String authToken, String patientId) {
+        this.presenter.getPatientStatus(authToken, patientId);
+    }
 
     public void setAuthToken(String authToken) {
         this.authToken = authToken;

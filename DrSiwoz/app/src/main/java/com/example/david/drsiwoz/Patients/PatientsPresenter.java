@@ -46,28 +46,28 @@ public class PatientsPresenter {
         });
     }
 
-//    public void getExamination(String authToken, String patientId) {
-//        Call<MedicalTest> call = ApiAuthProvider.getApi(authToken).getExamination(patientId);
-//        call.enqueue(new Callback<MedicalTest>() {
-//            @Override
-//            public void onResponse(Call<MedicalTest> call, Response<MedicalTest> response) {
-//                int statusCode = response.code();
-//                if (statusCode == 500) {
-//                    Log.e("fetch examination code", String.valueOf(statusCode));
-//                } else if (statusCode == 404) {
-//                    Log.e("fetch examination", "not found");
-//                } else {
-//                    MedicalTest medicalTest = response.body();
-//                    view.showExamination(medicalTest);
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<MedicalTest> call, Throwable t) {
-//                Log.e("fetch examination", "onFailure");
-//            }
-//        });
-//    }
+    public void getPatientStatus(String authToken, String patientId) {
+        Call<patientStatus> call = ApiAuthProvider.getApi(authToken).getPatientStatus(patientId);
+        call.enqueue(new Callback<PatientStatus>() {
+            @Override
+            public void onResponse(Call<PatientStatus> call, Response<PatientStatus> response) {
+                int statusCode = response.code();
+                if (statusCode == 500) {
+                    Log.e("fetch patient status", String.valueOf(statusCode));
+                } else if (statusCode == 404) {
+                    Log.e("fetch patient status", "not found");
+                } else {
+                    PatientStatus medicalTest = response.body();
+                    view.showPatientStatus(medicalTest);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PatientStatus> call, Throwable t) {
+                Log.e("fetch patient status", "onFailure");
+            }
+        });
+    }
 
     public void updatePatient(String authToken, final String patientId, UpPatient patientStatus) {
         Call<ResponseBody> call = ApiAuthProvider.getApi(authToken).updatePatient(patientId, patientStatus);

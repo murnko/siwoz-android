@@ -10,5 +10,5 @@ public interface PatientsView {
     void resetPatientId();
     void showPatient(Patient patient);
     void cleanPatientStatus();
-    //void showExamination(MedicalTest medicalTest);
+    void showPatientStatus(PatientStatus patientStatus);
 }

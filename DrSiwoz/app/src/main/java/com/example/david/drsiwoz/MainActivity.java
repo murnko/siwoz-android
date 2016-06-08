@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity
                     mViewPager.setCurrentItem(1);
                     System.out.println(patientId);
                     this.mSectionsPagerAdapter.patientsFragment.getPatient(this.authToken, this.patientId);
-                    //this.mSectionsPagerAdapter.patientsFragment.getExamination(this.authToken, this.patientId);
+                    this.mSectionsPagerAdapter.patientsFragment.getPatientStatus(this.authToken, this.patientId);
                     this.mSectionsPagerAdapter.drugsFragment.getServings(this.authToken,this.patientId);
                     break;
                 case 21:
