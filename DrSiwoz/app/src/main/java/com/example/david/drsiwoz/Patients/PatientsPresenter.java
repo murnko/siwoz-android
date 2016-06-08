@@ -2,7 +2,6 @@ package com.example.david.drsiwoz.Patients;
 
 import android.util.Log;
 
-import com.example.david.drsiwoz.Models.MedicalTest;
 import com.example.david.drsiwoz.Models.Patient;
 import com.example.david.drsiwoz.Models.PatientStatus;
 import com.example.david.drsiwoz.Models.UpPatient;
@@ -58,8 +57,8 @@ public class PatientsPresenter {
                 } else if (statusCode == 404) {
                     Log.e("fetch patient status", "not found");
                 } else {
-                    PatientStatus medicalTest = response.body();
-                    view.showPatientStatus(medicalTest);
+                    PatientStatus patientStatus = response.body();
+                    view.showPatientStatus(patientStatus);
                 }
             }
 
@@ -70,7 +69,7 @@ public class PatientsPresenter {
         });
     }
 
-    public void updatePatient(String authToken, final String patientId, UpPatient patientStatus) {
+    public void updatePatient(final String authToken, final String patientId, UpPatient patientStatus) {
         Call<ResponseBody> call = ApiAuthProvider.getApi(authToken).updatePatient(patientId, patientStatus);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -79,6 +78,7 @@ public class PatientsPresenter {
                 if (statusCode == 200) {
                     Log.d("code", "OK200");
                     view.cleanPatientStatus();
+                    getPatientStatus(authToken, patientId);
                 }
                 else{
                     Log.d("code", "not 200");
