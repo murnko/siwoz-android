@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.david.drsiwoz.Models.MedicalTest;
 import com.example.david.drsiwoz.Models.Patient;
+import com.example.david.drsiwoz.Models.PatientStatus;
 import com.example.david.drsiwoz.Models.UpPatient;
 import com.example.david.drsiwoz.REST.ApiAuthProvider;
 
@@ -47,7 +48,7 @@ public class PatientsPresenter {
     }
 
     public void getPatientStatus(String authToken, String patientId) {
-        Call<patientStatus> call = ApiAuthProvider.getApi(authToken).getPatientStatus(patientId);
+        Call<PatientStatus> call = ApiAuthProvider.getApi(authToken).getPatientStatus(patientId);
         call.enqueue(new Callback<PatientStatus>() {
             @Override
             public void onResponse(Call<PatientStatus> call, Response<PatientStatus> response) {

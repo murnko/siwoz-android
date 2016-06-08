@@ -202,10 +202,11 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/examinationDateTextView"
-                    android:paddingBottom="10dp" />
+                    android:paddingBottom="10dp"
+                    android:textAlignment="viewStart" />
             </LinearLayout>
 
             <LinearLayout
@@ -222,9 +223,10 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/examinationDoctorTextView" />
+                    android:id="@+id/examinationDoctorTextView"
+                    android:textAlignment="viewStart" />
             </LinearLayout>
 
             <TextView
