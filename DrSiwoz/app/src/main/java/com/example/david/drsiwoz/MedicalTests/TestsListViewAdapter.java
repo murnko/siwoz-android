@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.david.drsiwoz.Models.MedicalTest;
@@ -35,17 +36,17 @@ public class TestsListViewAdapter extends ArrayAdapter{
         View rowView = inflater.inflate(R.layout.medtest_list_item, parent, false);
 
 
-        TextView descTextView = (TextView) rowView.findViewById(R.id.examinationDescriptionTextView);
-        TextView docNameTextView = (TextView) rowView.findViewById(R.id.examinationDescriptionTextView);
-        TextView createdTextView = (TextView) rowView.findViewById(R.id.examinationDateTextView);
-//        TextView statusTextView = (TextView) rowView.findViewById(R.id.examinationStatusTextView);
+        TextView testNameTextView = (TextView) rowView.findViewById(R.id.testNameTextview);
+        TextView createdTestTextView = (TextView) rowView.findViewById(R.id.createdTestView);
+        TextView statusTestTextView = (TextView) rowView.findViewById(R.id.statusTextView);
+        ListView valuesTestListView = (ListView) rowView.findViewById(R.id.testsListView);
         MedicalTest test = values.get(position);
-//        if (test.getStatus() == "Done"){
-//            statusTextView.setBackgroundColor(doneColor);
-//        }
-//        if (test.getStatus() == "InProgress"){
-//            statusTextView.setBackgroundColor(progressColor);
-//        }
+        if (test.getStatus() == "Done"){
+            statusTestTextView.setBackgroundColor(doneColor);
+        }
+        if (test.getStatus() == "InProgress"){
+            statusTestTextView.setBackgroundColor(progressColor);
+        }
 
         return rowView;
     }

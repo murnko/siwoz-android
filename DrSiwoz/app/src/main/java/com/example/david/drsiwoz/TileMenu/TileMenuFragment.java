@@ -89,10 +89,10 @@ public class TileMenuFragment extends Fragment implements TileMenuView{
                 mMenuItemSelectedCallback.onMenuItemSelected(2);
             }
         });
-        drugsButton.setOnClickListener(new View.OnClickListener() {
+        medTestsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mMenuItemSelectedCallback.onMenuItemSelected(4);
+                mMenuItemSelectedCallback.onMenuItemSelected(3);
             }
         });
 

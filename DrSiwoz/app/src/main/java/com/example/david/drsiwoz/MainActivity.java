@@ -14,6 +14,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.david.drsiwoz.MedicalTests.TestsFragment;
+import com.example.david.drsiwoz.Models.MedicalTest;
 import com.example.david.drsiwoz.Patients.PatientsFragment;
 import com.example.david.drsiwoz.Drugs.DrugsFragment;
 import com.example.david.drsiwoz.TileMenu.TileMenuFragment;
@@ -103,6 +105,7 @@ public class MainActivity extends AppCompatActivity
     public void onMenuItemSelected(int position) {
         if (position == 2) {
             mSectionsPagerAdapter.drugsFragment.getServings(authToken,patientId);
+
         }
         mViewPager.setCurrentItem(position);
     }
@@ -126,14 +129,16 @@ public class MainActivity extends AppCompatActivity
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
         public DrugsFragment drugsFragment;
         public PatientsFragment patientsFragment;
+        public TestsFragment testsFragment;
         public TileMenuFragment tileMenuFragment;
+
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
             drugsFragment = new DrugsFragment();
             tileMenuFragment = new TileMenuFragment();
-
             patientsFragment = new PatientsFragment();
+            testsFragment = new TestsFragment();
             patientsFragment.setAuthToken(authToken);
         }
 
@@ -143,7 +148,13 @@ public class MainActivity extends AppCompatActivity
                 return tileMenuFragment;
             } else if (position == 1) {
                 return patientsFragment;
-            } else{
+            } else if (position == 2){
+                return drugsFragment;
+            }
+              else if (position == 3){
+                return testsFragment;
+            }
+            else{
                 drugsFragment.getServings(authToken,patientId);
                 return drugsFragment;
             }
@@ -151,7 +162,7 @@ public class MainActivity extends AppCompatActivity
 
         @Override
         public int getCount() {
-            return 3;
+            return 4;
         }
 
         @Override
