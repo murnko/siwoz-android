@@ -19,6 +19,7 @@ public class TileMenuFragment extends Fragment implements TileMenuView{
     private ImageButton patientButton;
     private ImageButton drugsButton;
     private ImageButton specialistReportsButton;
+    private ImageButton medTestsButton;
     private ImageButton scanButton;
 
     private TileMenuPresenter presenter;
@@ -65,7 +66,7 @@ public class TileMenuFragment extends Fragment implements TileMenuView{
         patientButton = (ImageButton) rootView.findViewById(R.id.patientButton);
         drugsButton = (ImageButton) rootView.findViewById(R.id.drugsButton);
         specialistReportsButton = (ImageButton) rootView.findViewById(R.id.specialistReportsButton);
-
+        medTestsButton = (ImageButton) rootView.findViewById(R.id.medTestsButton);
         scanButton = (ImageButton) rootView.findViewById(R.id.scanButton);
         scanButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,6 +87,12 @@ public class TileMenuFragment extends Fragment implements TileMenuView{
             @Override
             public void onClick(View v) {
                 mMenuItemSelectedCallback.onMenuItemSelected(2);
+            }
+        });
+        drugsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMenuItemSelectedCallback.onMenuItemSelected(4);
             }
         });
 
