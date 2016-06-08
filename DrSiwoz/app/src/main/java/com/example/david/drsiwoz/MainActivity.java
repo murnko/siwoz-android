@@ -193,9 +193,7 @@ public class MainActivity extends AppCompatActivity
                 default:
                     mViewPager.setCurrentItem(1);
                     break;
-
             }
-
         }
         else{System.out.println("scanningResult= NULL!");}
 

@@ -1,8 +1,6 @@
 package com.example.david.drsiwoz.Drugs;
 
-
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +11,9 @@ import android.widget.TextView;
 import com.example.david.drsiwoz.Models.Serving;
 import com.example.david.drsiwoz.R;
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by jacek on 26.05.16.
@@ -70,21 +65,15 @@ public class DrugsListViewAdapter extends ArrayAdapter<Serving> {
             drugNameTextView.setBackgroundColor(appliedColor);
             drugDosageTextView.setBackgroundColor(appliedColor);
             drugUnitTextView.setBackgroundColor(appliedColor);
-        }
-
-        if (serving.isCancelled().booleanValue()){
+        } else if (serving.isCancelled().booleanValue()){
             drugNameTextView.setBackgroundColor(canceledColor);
             drugDosageTextView.setBackgroundColor(canceledColor);
             drugUnitTextView.setBackgroundColor(canceledColor);
-        }
-
-        if (serving.isAccepted().booleanValue()){
+        } else if (serving.isAccepted().booleanValue()){
             drugNameTextView.setBackgroundColor(acceptedColor);
             drugDosageTextView.setBackgroundColor(acceptedColor);
             drugUnitTextView.setBackgroundColor(acceptedColor);
-        }
-
-        if (serving.isSuspended().booleanValue()){
+        } else if (serving.isSuspended().booleanValue()){
             drugNameTextView.setBackgroundColor(suspendedColor);
             drugDosageTextView.setBackgroundColor(suspendedColor);
             drugUnitTextView.setBackgroundColor(suspendedColor);

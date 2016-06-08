@@ -58,14 +58,11 @@ public class DrugsFragment extends Fragment implements DrugsView {
         adapter = new DrugsListViewAdapter(getActivity(), mockDrugsList);
         listView.setAdapter(adapter);
 
-
         applyButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 MainActivity activity = (MainActivity) getActivity();
                 activity.onScanInitiated(21);
-
-
             }
         });
 
