@@ -30,13 +30,13 @@ public class TestsFragment extends Fragment implements TestsView {
         presenter = new TestsPresenterImpl(this);
     }
 
-    public void getTests(String authToken){presenter.getTests(authToken);}
-    public void requestTest(String authToken, String requestedTestId){presenter.requestTest(authToken, requestedTestId);}
+    public void getTests(String authToken, String patientId){presenter.getTests(authToken, patientId);}
+    public void requestTest(String authToken,String patientId, String requestedTestId){presenter.requestTest(authToken, patientId, requestedTestId);}
 
     @Override
             public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                      Bundle savedInstanceState){
-        final View rootView = inflater.inflate(R.layout.medTests_fragment, container, false);
+        final View rootView = inflater.inflate(R.layout.medtests_fragment, container, false);
         listView = (ListView) rootView.findViewById(R.id.testsListView);
         Button requestTestButton = (Button) rootView.findViewById(R.id.requestTestButton);
         Spinner spinner = (Spinner) rootView.findViewById(R.id.testsSpinner);

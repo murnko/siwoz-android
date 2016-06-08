@@ -21,13 +21,13 @@ public class TestsPresenterImpl implements TestsPresenter, TestsInteractor.OnGet
     }
 
     @Override
-    public void getTests(String authToken) {
-        testsInteractor.getTests( this, authToken);
+    public void getTests(String authToken, String patientId) {
+        testsInteractor.getTests( this, authToken, patientId);
     }
 
     @Override
-    public void requestTest(String authToken, String requestedTestId) {
-        testsInteractor.requestTest(this,authToken, requestedTestId);
+    public void requestTest(String authToken,String patientId, String requestedTestId) {
+        testsInteractor.requestTest(this,authToken,patientId, requestedTestId);
 
     }
 

@@ -14,6 +14,6 @@ public interface TestsInteractor {
         void onSuccess(List<MedicalTest> tests);
     }
 
-    void getTests(OnGetTestsListener listener, String authToken);
-    void requestTest(OnGetTestsListener listener, String authToken, String requestedTestId);
+    void getTests(OnGetTestsListener listener, String authToken, String patientId);
+    void requestTest(OnGetTestsListener listener, String authToken,String patientId, String requestedTestId);
 }

@@ -9,5 +9,5 @@ import com.example.david.drsiwoz.Models.Patient;
 public interface PatientsView {
     void resetPatientId();
     void showPatient(Patient patient);
-    void showExamination(MedicalTest medicalTest);
+    //void showExamination(MedicalTest medicalTest);
 }

@@ -27,8 +27,8 @@ public interface Api {
     @GET("api/patients/{patient_id}")
     Call<Patient> getPatient(@Path("patient_id") String patientId);
 
-    @GET("api/patients/{patientId}/status")
-    Call<MedicalTest> getExamination(@Path("patientId") String patientId);
+//    @GET("api/patients/{patientId}/status")
+//    Call<MedicalTest> getExamination(@Path("patientId") String patientId);
 
     @POST("api/patients/{patientId}/status")
     Call<ResponseBody> updatePatient(@Path("patientId") String patientId, @Body UpPatient updatePatientBody);
@@ -43,6 +43,14 @@ public interface Api {
 
     @PUT("api/drugs")
     Call<ResponseBody> acceptDrugs(@Body List<String> listId );
+
+
+    //Medical Tests Api
+    @GET("api/patients/{patientId}/medtests")
+    Call<List<MedicalTest>> getTests(@Path("patientId") String patientId);
+
+    @POST("api/patients/{patientId}/medtests")
+    Call<List<MedicalTest>> requestTest(@Path("patientId") String patientId, @Body String requestedTestId);
 
 
     //Exam API
