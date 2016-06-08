@@ -2,22 +2,23 @@ package com.example.david.drsiwoz.Drugs;
 
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-import com.example.david.drsiwoz.MainActivity;
-import com.example.david.drsiwoz.Models.Drug;
 import com.example.david.drsiwoz.Models.Serving;
 import com.example.david.drsiwoz.R;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by jacek on 26.05.16.
@@ -36,7 +37,6 @@ public class DrugsListViewAdapter extends ArrayAdapter<Serving> {
         this.context = context;
         this.values = values;
         this.checkedServingsId = new ArrayList<>(values.size());
-
     }
 
     @Override
@@ -58,19 +58,13 @@ public class DrugsListViewAdapter extends ArrayAdapter<Serving> {
         checkBox.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                if (checkBox.isChecked()){
+                if (checkBox.isChecked() && checkedServingsId.indexOf(serving.getId()) == -1) {
                     checkedServingsId.add(serving.getId());
-                }
-                else{ checkedServingsId.remove(serving.getId());
+                } else {
+                    checkedServingsId.removeAll(Arrays.asList(serving.getId()));
                 }
             }
         });
-
-//        else{
-//            checkedServingsId.add(position, null);
-//
-//        }
-
 
         if (serving.isApplied().booleanValue()){
             drugNameTextView.setBackgroundColor(appliedColor);
@@ -100,6 +94,8 @@ public class DrugsListViewAdapter extends ArrayAdapter<Serving> {
     }
 
     public List<String> getCheckedServingsId(){
-        return checkedServingsId;
+        List<String> copied = new ArrayList<String>(checkedServingsId);
+        checkedServingsId.clear();
+        return copied;
     }
 }

@@ -83,7 +83,6 @@ public class DrugsFragment extends Fragment implements DrugsView {
         cancelButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                List<String> cancelledDrugsList;
                 MainActivity activity = (MainActivity) getActivity();
                 String patientId = activity.getPatientId();
                 String authToken = activity.getauthToken();
@@ -103,8 +102,6 @@ public class DrugsFragment extends Fragment implements DrugsView {
         adapter.notifyDataSetChanged();
         Log.d("DrugsFragment", "Show drugs");
     }
-
-
 
     @Override
     public void displayGetDrugsError() {
