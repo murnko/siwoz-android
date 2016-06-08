@@ -17,7 +17,7 @@ public class TestsPresenterImpl implements TestsPresenter, TestsInteractor.OnGet
 
     public TestsPresenterImpl(TestsView testsView){
         this.testsView = testsView;
-        this.testsInteractor = testsInteractor;
+        this.testsInteractor = new TestsInteractorImpl();
     }
 
     @Override

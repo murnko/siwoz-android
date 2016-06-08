@@ -1,6 +1,7 @@
 package com.example.david.drsiwoz.MedicalTests;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import static android.R.layout.*;
 
+import com.example.david.drsiwoz.MainActivity;
 import com.example.david.drsiwoz.Models.MedicalTest;
 import com.example.david.drsiwoz.R;
 
@@ -28,6 +30,7 @@ import java.util.List;
 public class TestsFragment extends Fragment implements TestsView,AdapterView.OnItemSelectedListener {
     private ListView listView;
     private TestsListViewAdapter adapter;
+    private String itemSpinnerSelected;
 
     private TestsPresenter presenter;
 
@@ -44,23 +47,29 @@ public class TestsFragment extends Fragment implements TestsView,AdapterView.OnI
         final View rootView = inflater.inflate(R.layout.medtests_fragment, container, false);
         listView = (ListView) rootView.findViewById(R.id.testsListView);
         Button requestTestButton = (Button) rootView.findViewById(R.id.requestTestButton);
+
         Spinner spinner = (Spinner) rootView.findViewById(R.id.testsSpinner);
         spinner.setOnItemSelectedListener(this);
-
         // Spinner Drop down elements
         List<String> categories = new ArrayList<>();
-        categories.add("Automobile");
-        categories.add("Business Services");
-        categories.add("Computers");
-        categories.add("Education");
-        categories.add("Personal");
-        categories.add("Travel");
-
+        categories.add("Krew A");
+        categories.add("Krew B");
+        categories.add("Krew C");
+        categories.add("Mocz");
+        categories.add("Głowa");
+        categories.add("Nogi");
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(getActivity(), simple_spinner_item, categories );
-
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);
+
+        requestTestButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity activity = (MainActivity) getActivity();
+                requestTest(activity.getauthToken(),activity.getPatientId(),itemSpinnerSelected);
+            }
+        });
 
         List<MedicalTest> testsList = new ArrayList<>();
         adapter = new TestsListViewAdapter(getActivity(), testsList);
@@ -86,11 +95,7 @@ public class TestsFragment extends Fragment implements TestsView,AdapterView.OnI
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int i, long l) {
-        // On selecting a spinner item
-        String item = parent.getItemAtPosition(i).toString();
-
-        // Showing selected spinner item
-        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+        itemSpinnerSelected = parent.getItemAtPosition(i).toString();
 
     }
 
