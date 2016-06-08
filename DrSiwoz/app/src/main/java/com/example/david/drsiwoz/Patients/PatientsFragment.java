@@ -170,7 +170,7 @@ public class PatientsFragment extends Fragment implements PatientsView {
         } else if (status.equals("g")) {
             examinationDescriptionTextView.setTextColor(Color.GREEN);
         } else if (status.equals("c")) {
-            examinationDescriptionTextView.setTextColor(Color.CYAN);
+            examinationDescriptionTextView.setTextColor(Color.DKGRAY);
         }
     }
 
