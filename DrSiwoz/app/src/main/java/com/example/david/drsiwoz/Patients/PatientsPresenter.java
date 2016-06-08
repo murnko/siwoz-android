@@ -2,7 +2,7 @@ package com.example.david.drsiwoz.Patients;
 
 import android.util.Log;
 
-import com.example.david.drsiwoz.Models.Examination;
+import com.example.david.drsiwoz.Models.MedicalTest;
 import com.example.david.drsiwoz.Models.Patient;
 import com.example.david.drsiwoz.Models.UpPatient;
 import com.example.david.drsiwoz.REST.ApiAuthProvider;
@@ -47,23 +47,23 @@ public class PatientsPresenter {
     }
 
     public void getExamination(String authToken, String patientId) {
-        Call<Examination> call = ApiAuthProvider.getApi(authToken).getExamination(patientId);
-        call.enqueue(new Callback<Examination>() {
+        Call<MedicalTest> call = ApiAuthProvider.getApi(authToken).getExamination(patientId);
+        call.enqueue(new Callback<MedicalTest>() {
             @Override
-            public void onResponse(Call<Examination> call, Response<Examination> response) {
+            public void onResponse(Call<MedicalTest> call, Response<MedicalTest> response) {
                 int statusCode = response.code();
                 if (statusCode == 500) {
                     Log.e("fetch examination code", String.valueOf(statusCode));
                 } else if (statusCode == 404) {
                     Log.e("fetch examination", "not found");
                 } else {
-                    Examination examination = response.body();
-                    view.showExamination(examination);
+                    MedicalTest medicalTest = response.body();
+                    view.showExamination(medicalTest);
                 }
             }
 
             @Override
-            public void onFailure(Call<Examination> call, Throwable t) {
+            public void onFailure(Call<MedicalTest> call, Throwable t) {
                 Log.e("fetch examination", "onFailure");
             }
         });

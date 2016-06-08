@@ -4,23 +4,23 @@
     android:layout_height="match_parent">
 
     <Spinner
-        android:id="@+id/examSpinner"
+        android:id="@+id/testsSpinner"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_toStartOf="@+id/requestExamButton" />
+        android:layout_toStartOf="@+id/requestTestButton" />
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/examsListView"
-        android:layout_below="@+id/examSpinner"
+        android:id="@+id/testsListView"
+        android:layout_below="@+id/testsSpinner"
         android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/requestExamButton"
+        android:text="Request"
+        android:id="@+id/requestTestButton"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
 

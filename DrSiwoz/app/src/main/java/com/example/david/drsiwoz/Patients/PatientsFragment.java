@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import com.example.david.drsiwoz.Models.Examination;
+import com.example.david.drsiwoz.Models.MedicalTest;
 import com.example.david.drsiwoz.Models.UpPatient;
 import com.example.david.drsiwoz.R;
 import com.example.david.drsiwoz.Models.Patient;
@@ -156,11 +156,11 @@ public class PatientsFragment extends Fragment implements PatientsView {
 
 
     @Override
-    public void showExamination(Examination examination) {
-        examinationDateTextView.setText(examination.getCreated());
-        examinationDoctorTextView.setText(examination.getDoctorName());
-        examinationDescriptionTextView.setText(examination.getDescription());
-        String status = examination.getStatus();
+    public void showExamination(MedicalTest medicalTest) {
+        examinationDateTextView.setText(medicalTest.getCreated());
+        examinationDoctorTextView.setText(medicalTest.getDoctorName());
+        examinationDescriptionTextView.setText(medicalTest.getDescription());
+        String status = medicalTest.getStatus();
         if (status.equals("i")) {
             examinationDescriptionTextView.setTextColor(Color.BLUE);
         } else if (status.equals("g")) {

@@ -1,6 +1,6 @@
 package com.example.david.drsiwoz.Patients;
 
-import com.example.david.drsiwoz.Models.Examination;
+import com.example.david.drsiwoz.Models.MedicalTest;
 import com.example.david.drsiwoz.Models.Patient;
 
 /**
@@ -9,5 +9,5 @@ import com.example.david.drsiwoz.Models.Patient;
 public interface PatientsView {
     void resetPatientId();
     void showPatient(Patient patient);
-    void showExamination(Examination examination);
+    void showExamination(MedicalTest medicalTest);
 }

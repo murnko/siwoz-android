@@ -1,11 +1,17 @@
 package com.example.david.drsiwoz.Models;
 
+import android.util.Pair;
+
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 /**
  * Created by jacek on 30.05.16.
  */
-public class Examination {
+public class MedicalTest {
+
+
     @SerializedName("status")
     String mStatus;
 
@@ -18,15 +24,19 @@ public class Examination {
     @SerializedName("created")
     String mCreated;
 
-    @SerializedName("description")
-    String mDescription;
+    @SerializedName("done")
+    String mDone;
 
-    public Examination(String status, String doctor_first_name, String doctor_last_name, String created, String description) {
+    @SerializedName("results")
+    List<Pair> mResults;
+
+    public MedicalTest(String status, String doctor_first_name, String doctor_last_name, String created, String done, List<Pair> results) {
         this.mStatus = status;
         this.mDoctorFirstName = doctor_first_name;
         this.mDoctorLastName = doctor_last_name;
         this.mCreated = created;
-        this.mDescription = description;
+        this.mDone = done;
+        this.mResults = results;
     }
 
     public String getDoctorName() {
@@ -41,7 +51,9 @@ public class Examination {
         return mCreated;
     }
 
-    public String getDescription() {
-        return mDescription;
+    public String getDone() {
+        return mDone;
     }
+
+    public List<Pair> getmResults() {return mResults;}
 }

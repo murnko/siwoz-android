@@ -170,7 +170,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Last examination"
+            android:text="Last medicalTest"
             android:id="@+id/lastExaminationTitleTextView"
             android:layout_gravity="center_horizontal"
             android:paddingBottom="10dp"
