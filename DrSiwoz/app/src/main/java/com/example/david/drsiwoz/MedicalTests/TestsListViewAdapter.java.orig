@@ -1,12 +1,16 @@
 package com.example.david.drsiwoz.MedicalTests;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+<<<<<<< HEAD
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+=======
 import android.widget.BaseExpandableListAdapter;
+>>>>>>> layout-exam-expandable
 import android.widget.TextView;
 
 import com.example.david.drsiwoz.Models.MedicalTest;
@@ -70,17 +74,28 @@ public class TestsListViewAdapter extends BaseExpandableListAdapter {
             convertView = infalInflater.inflate(R.layout.medtest_list_item, null);
         }
         TextView testNameTextView = (TextView) convertView.findViewById(R.id.testNameTextView);
+        TextView testStatusTextView = (TextView) convertView.findViewById(R.id.testStatusTextView);
         TextView testCreatedTextView = (TextView) convertView.findViewById(R.id.testCreatedTestView);
 
         MedicalTest test = (MedicalTest) getGroup(groupPosition);
 
-        testCreatedTextView.setText(test.getCreated());
-        testNameTextView.setText(test.getDoctorName());
-        if (test.getDone().equals("True")) {
-            convertView.setBackgroundColor(Color.rgb(194, 230, 242));
-        } else {
-            convertView.setBackgroundColor(Color.rgb(134, 150, 156));
+<<<<<<< HEAD
+        TextView testNameTextView = (TextView) rowView.findViewById(R.id.testNameTextview);
+        TextView createdTestTextView = (TextView) rowView.findViewById(R.id.createdTestView);
+        TextView statusTestTextView = (TextView) rowView.findViewById(R.id.statusTextView);
+        ListView valuesTestListView = (ListView) rowView.findViewById(R.id.testsListView);
+        MedicalTest test = values.get(position);
+        if (test.getStatus() == "Done"){
+            statusTestTextView.setBackgroundColor(doneColor);
         }
+        if (test.getStatus() == "InProgress"){
+            statusTestTextView.setBackgroundColor(progressColor);
+        }
+=======
+        testCreatedTextView.setText(test.getCreated());
+        testStatusTextView.setText(test.getStatus());
+        testNameTextView.setText(test.getDoctorName());
+>>>>>>> layout-exam-expandable
 
         return convertView;
     }

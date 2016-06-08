@@ -4,6 +4,8 @@ import android.util.Pair;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -12,13 +14,10 @@ import java.util.List;
 public class MedicalTest {
 
 
-    @SerializedName("status")
-    String mStatus;
-
-    @SerializedName("doctor_first_name")
+    @SerializedName("first_name")
     String mDoctorFirstName;
 
-    @SerializedName("doctor_last_name")
+    @SerializedName("last_name")
     String mDoctorLastName;
 
     @SerializedName("created")
@@ -27,16 +26,15 @@ public class MedicalTest {
     @SerializedName("done")
     String mDone;
 
-    @SerializedName("results")
-    List<Pair> mResults;
+    @SerializedName("result")
+    String mResults;
 
-    public MedicalTest(String status, String doctor_first_name, String doctor_last_name, String created, String done, List<Pair> results) {
-        this.mStatus = status;
-        this.mDoctorFirstName = doctor_first_name;
-        this.mDoctorLastName = doctor_last_name;
+    public MedicalTest(String status, String first_name, String last_name, String created, String done, String result) {
+        this.mDoctorFirstName = first_name;
+        this.mDoctorLastName = last_name;
         this.mCreated = created;
         this.mDone = done;
-        this.mResults = results;
+        this.mResults = result;
     }
 
     public String getDoctorName() {
@@ -44,7 +42,7 @@ public class MedicalTest {
     }
 
     public String getStatus() {
-        return mStatus;
+        return mDone;
     }
 
     public String getCreated() {
@@ -55,5 +53,17 @@ public class MedicalTest {
         return mDone;
     }
 
-    public List<Pair> getmResults() {return mResults;}
+    public List<Pair<String, String>> getmResults() {
+        if (this.mResults.indexOf(new String("-")) == -1) {
+            return new ArrayList<>();
+        }
+        List<Pair<String, String>> hashResults = new ArrayList<>();
+        String[] parts = this.mResults.split("-");
+        for (Integer i = 0; i < parts.length; i++) {
+            String result[] = parts[i].split("\\|");
+            Pair<String, String> hashResult = new Pair<>(result[0], result[1]);
+            hashResults.add(hashResult);
+        }
+        return hashResults;
+    }
 }

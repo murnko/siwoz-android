@@ -7,34 +7,17 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="testName"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/testNameTextview"
+        android:id="@+id/testNameTextView"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Status"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/statusTextView"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="created"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/createdTestView"
+        android:id="@+id/testCreatedTestView"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
 
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/resultsTestTextView"
-        android:layout_below="@+id/testNameTextview"
-        android:layout_alignParentStart="true" />
 </RelativeLayout>

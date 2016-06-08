@@ -9,17 +9,15 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
         android:layout_column="0"
         android:layout_columnWeight="1"
-        android:id="@+id/parameterTestTextView"
+        android:id="@+id/testParameterTextView"
         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
         android:layout_column="1"
         android:layout_columnWeight="1"
-        android:id="@+id/valueTestTextView" />
+        android:id="@+id/testValueTextView" />
 </GridLayout>

@@ -92,20 +92,17 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onScanInitiated(int requestCode) {
-
-
         requestCodeBig = requestCode;
         IntentIntegrator scanIntegrator = new IntentIntegrator(this);
         scanIntegrator.initiateScan();
-
-        //scanIntegrator.initiateScan();
     }
 
     @Override
     public void onMenuItemSelected(int position) {
         if (position == 2) {
             mSectionsPagerAdapter.drugsFragment.getServings(authToken,patientId);
-
+        } else if(position == 3) {
+            mSectionsPagerAdapter.testsFragment.getTests(authToken, patientId);
         }
         mViewPager.setCurrentItem(position);
     }
@@ -132,11 +129,11 @@ public class MainActivity extends AppCompatActivity
         public TestsFragment testsFragment;
         public TileMenuFragment tileMenuFragment;
 
-
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
             drugsFragment = new DrugsFragment();
             tileMenuFragment = new TileMenuFragment();
+
             patientsFragment = new PatientsFragment();
             testsFragment = new TestsFragment();
             patientsFragment.setAuthToken(authToken);
@@ -148,15 +145,14 @@ public class MainActivity extends AppCompatActivity
                 return tileMenuFragment;
             } else if (position == 1) {
                 return patientsFragment;
-            } else if (position == 2){
-                return drugsFragment;
-            }
-              else if (position == 3){
-                return testsFragment;
-            }
-            else{
+            } else if (position == 2) {
                 drugsFragment.getServings(authToken,patientId);
                 return drugsFragment;
+            } else if (position == 3){
+                testsFragment.getTests(authToken, patientId);
+                return testsFragment;
+            } else {
+                return null;
             }
         }
 

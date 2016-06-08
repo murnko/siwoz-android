@@ -29,8 +29,8 @@ public class TestsInteractorImpl implements TestsInteractor {
                 if (statusCode != 200) {
                     listener.onError();
                 } else {
-                    List<MedicalTest> drugs = response.body();
-                    listener.onSuccess(drugs);
+                    List<MedicalTest> tests = response.body();
+                    listener.onSuccess(tests);
                 }
             }
 
@@ -44,7 +44,7 @@ public class TestsInteractorImpl implements TestsInteractor {
 
 
     @Override
-    public void requestTest(final OnGetTestsListener listener, String authToken, String patientId, String requestedTestId) {
+    public void requestTest(final OnGetTestsListener listener, final String authToken, final String patientId, String requestedTestId) {
         Call<List<MedicalTest>> call = ApiAuthProvider.getApi(authToken).requestTest(patientId,requestedTestId);
         call.enqueue(new Callback<List<MedicalTest>>() {
             @Override
@@ -54,8 +54,8 @@ public class TestsInteractorImpl implements TestsInteractor {
                 if (statusCode != 200) {
                     listener.onError();
                 } else {
-                    List<MedicalTest> drugs = response.body();
-                    listener.onSuccess(drugs);
+                    List<MedicalTest> tests = response.body();
+                    listener.onSuccess(tests);
                 }
             }
 

@@ -1,7 +1,6 @@
 package com.example.david.drsiwoz.MedicalTests;
 
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -11,9 +10,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
+import android.widget.ExpandableListView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import static android.R.layout.*;
 
@@ -28,9 +26,10 @@ import java.util.List;
  * Created by david on 2016-06-05.
  */
 public class TestsFragment extends Fragment implements TestsView,AdapterView.OnItemSelectedListener {
-    private ListView listView;
-    private TestsListViewAdapter adapter;
+    private ExpandableListView listView;
     private String itemSpinnerSelected;
+    private List<MedicalTest> tests;
+    TestsListViewAdapter testsAdapter;
 
     private TestsPresenter presenter;
 
@@ -42,10 +41,13 @@ public class TestsFragment extends Fragment implements TestsView,AdapterView.OnI
     public void requestTest(String authToken,String patientId, String requestedTestId){presenter.requestTest(authToken, patientId, requestedTestId);}
 
     @Override
-            public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                     Bundle savedInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         final View rootView = inflater.inflate(R.layout.medtests_fragment, container, false);
-        listView = (ListView) rootView.findViewById(R.id.testsListView);
+
+        listView = (ExpandableListView) rootView.findViewById(R.id.medicalTestExpandableListView);
+        testsAdapter = new TestsListViewAdapter(getActivity(), tests);
+        listView.setAdapter(testsAdapter);
+
         Button requestTestButton = (Button) rootView.findViewById(R.id.requestTestButton);
 
         Spinner spinner = (Spinner) rootView.findViewById(R.id.testsSpinner);
@@ -63,34 +65,25 @@ public class TestsFragment extends Fragment implements TestsView,AdapterView.OnI
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);
 
-        requestTestButton.setOnClickListener(new View.OnClickListener() {
-            @Override
+        requestTestButton.setOnClickListener(new View.OnClickListener() { @Override
             public void onClick(View v) {
                 MainActivity activity = (MainActivity) getActivity();
                 requestTest(activity.getauthToken(),activity.getPatientId(),itemSpinnerSelected);
             }
         });
 
-        List<MedicalTest> testsList = new ArrayList<>();
-        adapter = new TestsListViewAdapter(getActivity(), testsList);
-        listView.setAdapter(adapter);
-
         return rootView;
     }
 
-
-
-
-
-
-
     @Override
     public void showTestsList(List<MedicalTest> tests) {
-        adapter.clear();
-        adapter.addAll(tests);
-        adapter.notifyDataSetChanged();
-        Log.d("DrugsFragment", "Show drugs");
-
+        this.tests = tests;
+        if (this.testsAdapter == null) {
+            this.testsAdapter = new TestsListViewAdapter(getActivity(), tests);
+        }
+        this.testsAdapter.notifyDataSetChanged();
+        this.testsAdapter.notifyDataSetInvalidated();
+        Log.d("DrugsFragment", "show tests list");
     }
 
     @Override

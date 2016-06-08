@@ -12,9 +12,6 @@ public class TestsPresenterImpl implements TestsPresenter, TestsInteractor.OnGet
     private TestsView testsView;
     private TestsInteractor testsInteractor;
 
-
-
-
     public TestsPresenterImpl(TestsView testsView){
         this.testsView = testsView;
         this.testsInteractor = new TestsInteractorImpl();
@@ -22,13 +19,12 @@ public class TestsPresenterImpl implements TestsPresenter, TestsInteractor.OnGet
 
     @Override
     public void getTests(String authToken, String patientId) {
-        testsInteractor.getTests( this, authToken, patientId);
+        testsInteractor.getTests(this, authToken, patientId);
     }
 
     @Override
     public void requestTest(String authToken,String patientId, String requestedTestId) {
         testsInteractor.requestTest(this,authToken,patientId, requestedTestId);
-
     }
 
     @Override
@@ -38,7 +34,7 @@ public class TestsPresenterImpl implements TestsPresenter, TestsInteractor.OnGet
 
     @Override
     public void onSuccess(List<MedicalTest> tests) {
-
+        testsView.showTestsList(tests);
     }
 
 }
