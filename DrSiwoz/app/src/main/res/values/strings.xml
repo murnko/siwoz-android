@@ -23,7 +23,7 @@
     <string name="specialistReportsButtonText">Reports</string>
     <string name="google_app_id">DrSiwoz</string>
 
-    <resources>
+
         <string-array name="exams_array">
             <item>Głowa</item>
             <item>Nogi</item>
@@ -32,6 +32,5 @@
             <item>KrewC</item>
             <item>Wzrok</item>
         </string-array>
-    </resources>
 
 </resources>
