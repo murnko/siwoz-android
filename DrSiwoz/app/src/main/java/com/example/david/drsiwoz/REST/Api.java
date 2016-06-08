@@ -16,6 +16,7 @@ import com.example.david.drsiwoz.Models.AuthData;
 import com.example.david.drsiwoz.Models.Drug;
 import com.example.david.drsiwoz.Models.MedicalTest;
 import com.example.david.drsiwoz.Models.Patient;
+import com.example.david.drsiwoz.Models.PatientStatus;
 import com.example.david.drsiwoz.Models.Serving;
 import com.example.david.drsiwoz.Models.UpPatient;
 import com.example.david.drsiwoz.Models.UpServings;
@@ -29,8 +30,8 @@ public interface Api {
     @GET("api/patients/{patient_id}")
     Call<Patient> getPatient(@Path("patient_id") String patientId);
 
-//    @GET("api/patients/{patientId}/status")
-//    Call<MedicalTest> getExamination(@Path("patientId") String patientId);
+    @GET("api/patients/{patientId}/status")
+    Call<PatientStatus> getPatientStatus(@Path("patientId") String patientId);
 
     @POST("api/patients/{patientId}/status")
     Call<ResponseBody> updatePatient(@Path("patientId") String patientId, @Body UpPatient updatePatientBody);

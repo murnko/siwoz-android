@@ -37,6 +37,6 @@ public class PatientStatus {
 
     public String getStatus() {return mStatus;}
     public String getDescription() {return mDescription;}
-    public String getCreatede() {return mCreated;}
+    public String getCreated() {return mCreated;}
     public String getDoctorName() {return mDoctorFirstName+mDoctorLastName;}
 }
