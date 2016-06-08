@@ -77,6 +77,7 @@ public class PatientsPresenter {
                 int statusCode = response.code();
                 if (statusCode == 200) {
                     Log.d("code", "OK200");
+                    view.cleanPatientStatus();
                 }
                 else{
                     Log.d("code", "not 200");

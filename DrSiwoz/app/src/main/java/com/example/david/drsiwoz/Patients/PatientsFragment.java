@@ -154,6 +154,10 @@ public class PatientsFragment extends Fragment implements PatientsView {
         peselTextView.setText(patient.getPesel());
     }
 
+    @Override
+    public void cleanPatientStatus() {
+        descriptionEditText.setText(new String(""));
+    }
 
 //    @Override
 //    public void showExamination(MedicalTest medicalTest) {
